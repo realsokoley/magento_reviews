@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('topic_level_tasks', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('topic_level_id')->nullable()->index('topic_level_id');
-            $table->integer('task_id')->nullable()->index('task_id');
-            $table->text('task_data')->nullable()->index('task_data');
+            $table->unsignedBigInteger('topic_level_id');
+            $table->unsignedBigInteger('task_id');
+            $table->text('task_data')->nullable();
+
+            $table->foreign('topic_level_id')->references('id')->on('topic_levels');
+            $table->foreign('task_id')->references('id')->on('tasks');
         });
     }
 
