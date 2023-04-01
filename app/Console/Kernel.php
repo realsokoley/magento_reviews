@@ -9,7 +9,10 @@ class Kernel extends ConsoleKernel
 {
     protected $commands = [
         Commands\GenerateTopics::class,
-        Commands\GenerateWordLists::class
+        Commands\GenerateWordLists::class,
+        Commands\GenerateTopicLevelFindAnswer::class,
+        Commands\GenerateTopicLevelTasksFillBlanks::class,
+        Commands\GenerateTopicLevelMatchTranslation::class
     ];
 
     /**

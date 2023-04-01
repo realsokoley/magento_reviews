@@ -6,20 +6,21 @@ use Illuminate\Support\Facades\Http;
 
 class ChatGPTRequest
 {
-    public function ask(string $prompt): string
+    public function ask(string $prompt, string $model): string
     {
-        $response = $this->askToChatGPT($prompt);
+        $response = $this->askToChatGPT($prompt, $model);
 
         return $response;
     }
 
-    private function askToChatGPT($prompt)
+    private function askToChatGPT($prompt, $model)
     {
         try {
             $response = Http::timeout(20)
                 ->withHeaders([
                     'Authorization' => 'Bearer ' . env('CHATGPT_API_KEY'),
                     'Content-Type' => 'application/json',
+                    //'model' => $model,
                 ])->post('https://api.openai.com/v1/engines/text-davinci-003/completions', [
                     "prompt" => $prompt,
                     "max_tokens" => 1000,
@@ -32,6 +33,7 @@ class ChatGPTRequest
                     ->withHeaders([
                         'Authorization' => 'Bearer ' . env('CHATGPT_API_KEY'),
                         'Content-Type' => 'application/json',
+                        'model' => $model,
                     ])->post('https://api.openai.com/v1/engines/text-davinci-003/completions', [
                         "prompt" => $prompt,
                         "max_tokens" => 1000,
@@ -43,6 +45,7 @@ class ChatGPTRequest
                         ->withHeaders([
                             'Authorization' => 'Bearer ' . env('CHATGPT_API_KEY'),
                             'Content-Type' => 'application/json',
+                            'model' => $model,
                         ])->post('https://api.openai.com/v1/engines/text-davinci-003/completions', [
                             "prompt" => $prompt,
                             "max_tokens" => 1000,
