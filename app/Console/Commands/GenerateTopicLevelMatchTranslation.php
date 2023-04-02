@@ -22,6 +22,34 @@ class GenerateTopicLevelMatchTranslation extends GenerateTopicLevelTasksFillBlan
     protected $taskName = 'match_translation';
     protected $jsonTemplate = '{"1": [{"task": "Autumn", "translated_task": "Autumn", "answer":"Syksy", "translated_answer":"Autumn"}]}';
 
+    public function handle(): void
+    {
+        $task = Task::where('name', $this->taskName)->first();
+        $wordListArray = WordList::whereNotNull('list')->get()->toArray();
+        foreach ($wordListArray as $wordListJson) {
+            $wordList = json_decode($wordListJson['list'], true);
+            $dictionaryNew = [];
+            foreach ($wordList as $dictionary) {
+                $dictionaryNew[] = [
+                    'task' => $dictionary['word'],
+                    'answer' => $dictionary['translation']
+                ];
+            }
+            $wordListTaskString = json_encode($dictionaryNew);
+            $wordListTaskString = preg_replace_callback('/\\\\u([0-9a-fA-F]{4})/', function ($match) {
+                return mb_convert_encoding(pack('H*', $match[1]), 'UTF-8', 'UCS-2BE');
+            }, $wordListTaskString);
+
+
+            $wordListTask = new WordListTask();
+            $wordListTask->word_list_id = $wordListJson['id'];
+            $wordListTask->task_id = $task->id;
+            $wordListTask->task_data = $wordListTaskString;
+            $wordListTask->save();
+        }
+
+    }
+
     public function specificTaskValidation($dictionary) {
         return true;
     }
@@ -39,4 +67,12 @@ class GenerateTopicLevelMatchTranslation extends GenerateTopicLevelTasksFillBlan
 
         return $arrayNew;
     }
+
+    public function getPromt($task, $words)
+    {
+        $promt = 'Please generate me an exercise "' . $task . '" for words "' . $words . '" . ' . $this->getSpecificTaskCondition() . '. You should return JSON with following template ' . $this->jsonTemplate;
+
+        return $promt;
+    }
+
 }
