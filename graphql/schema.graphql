@@ -1,41 +1,57 @@
-"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
-scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
-
-"Indicates what fields are available at the top level of a query operation."
-type Query {
-    "Find a single user by an identifying attribute."
-    user(
-      "Search by primary key."
-      id: ID @eq @rules(apply: ["prohibits:email", "required_without:email"])
-
-      "Search by email address."
-      email: String @eq @rules(apply: ["prohibits:id", "required_without:id", "email"])
-    ): User @find
-
-    "List multiple users."
-    users(
-      "Filters by name. Accepts SQL LIKE wildcards `%` and `_`."
-      name: String @where(operator: "like")
-    ): [User!]! @paginate(defaultCount: 10)
+type User {
+    id: ID!
+    username: String!
 }
 
-"Account of a person who utilizes this application."
-type User {
-    "Unique primary key."
+type WordList {
     id: ID!
+    list: String!
+}
 
-    "Non-unique name."
+type Task {
+    id: ID!
+    task: String!
     name: String!
+}
 
-    "Unique email address."
-    email: String!
+type Topic {
+    id: ID!
+    topic: String!
+}
 
-    "When the email was verified."
-    email_verified_at: DateTime
+type Level {
+    id: ID!
+    level: String!
+}
 
-    "When the account was created."
-    created_at: DateTime!
+type TopicLevel {
+    id: ID!
+    topic: Topic! @belongsTo(relation: "topic")
+    level: Level! @belongsTo(relation: "level")
+    word_list: WordList! @belongsTo(relation: "word_list")
+}
 
-    "When the account was last updated."
-    updated_at: DateTime!
+type Query {
+    user(id: ID! @eq): User @find
+    users: [User!]! @paginate
+
+    word_list(id: ID! @eq): WordList @find
+    word_lists: [WordList!]! @all
+
+    tasks: [Task!]! @all
+    task(id: ID! @eq): Task @find
+    task_by_name(name: String! @where(operator: "like")): [Task!]! @all
+
+    topics: [Topic!]! @all
+    topic(id: ID! @eq): Topic @find
+    topic_by_topic_name(topic: String! @where(operator: "like")): [Topic!]! @all
+
+    levels: [Level!]! @all
+    level(id: ID! @eq): Level @find
+    level_by_level_name(level: String! @where(operator: "like")): [Level!]! @all
+
+    topic_level(
+        topic_id: Int @where(operator: "like")
+        level_id: Int @where(operator: "like")
+    ): [TopicLevel!]! @all
 }
