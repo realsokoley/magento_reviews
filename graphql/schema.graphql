@@ -28,26 +28,26 @@ type TopicLevel {
     id: ID!
     topic: Topic! @belongsTo(relation: "topic")
     level: Level! @belongsTo(relation: "level")
-    wordList: WordList! @belongsTo(relation: "word_list")
+    wordList: WordList! @belongsTo(relation: "wordList")
 }
 
 type TopicLevelTask {
     id: ID!
-    topicLevel: TopicLevel! @belongsTo(relation: "topic_level")
+    topicLevel: TopicLevel! @belongsTo(relation: "topicLevel")
     task: Task! @belongsTo(relation: "task")
     task_data: String!
 }
 
 type WordListTask {
     id: ID!
-    wordList: TopicLevel! @belongsTo(relation: "word_list")
+    wordList: TopicLevel! @belongsTo(relation: "wordList")
     task: Task! @belongsTo(relation: "task")
     task_data: String!
 }
 
 type Dialog {
     id: ID!
-    wordList: WordList! @belongsTo(relation: "word_list")
+    wordList: WordList! @belongsTo(relation: "wordList")
     dialog_data: String!
 }
 
