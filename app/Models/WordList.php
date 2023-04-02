@@ -14,7 +14,7 @@ class WordList extends Model
      * @var array
      */
     protected $fillable = [
-        'word_list',
+        'list',
     ];
 
     /**
