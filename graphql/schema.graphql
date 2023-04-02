@@ -40,7 +40,7 @@ type TopicLevelTask {
 
 type WordListTask {
     id: ID!
-    wordList: TopicLevel! @belongsTo(relation: "wordList")
+    wordList: WordList! @belongsTo(relation: "wordList")
     task: Task! @belongsTo(relation: "task")
     task_data: String!
 }
