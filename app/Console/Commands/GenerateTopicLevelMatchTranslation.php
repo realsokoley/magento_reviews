@@ -20,7 +20,7 @@ class GenerateTopicLevelMatchTranslation extends GenerateTopicLevelTasksFillBlan
      */
     protected $signature = 'app:generate-topic-level-tasks-match-translation';
     protected $taskName = 'match_translation';
-    protected $jsonTemplate = '{"1": [{"task": "Autumn", "translated_task": "Autumn", "answer":"Syksy", "translated_answer":"Autumn"}]}';
+    protected string $jsonTemplate = '{"1": [{"task": "Autumn", "translated_task": "Autumn", "answer":"Syksy", "translated_answer":"Autumn"}]}';
 
     public function handle(): void
     {

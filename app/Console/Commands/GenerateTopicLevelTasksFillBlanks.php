@@ -20,7 +20,7 @@ class GenerateTopicLevelTasksFillBlanks extends Command
     protected $signature = 'app:generate-topic-level-tasks-fill-blanks';
 
     protected $taskName = 'fill_blanks';
-    protected $jsonTemplate = '{"1": [{"task": "Ota se ____ pois, sillä on liian kuuma.","translated_task": "Take off that _____, it"s too hot.","answer": "takki","translated_answer": "jacket"}]}';
+    protected string $jsonTemplate = '{"1": [{"task": "Ota se ____ pois, sillä on liian kuuma.","translated_task": "Take off that _____, it"s too hot.","answer": "takki","translated_answer": "jacket"}]}';
     protected $model = 'davinci:ft-personal-2023-04-01-17-07-52';
     protected array $wordListTaskMap = [];
     /**

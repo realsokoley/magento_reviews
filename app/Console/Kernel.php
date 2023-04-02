@@ -12,7 +12,8 @@ class Kernel extends ConsoleKernel
         Commands\GenerateWordLists::class,
         Commands\GenerateTopicLevelFindAnswer::class,
         Commands\GenerateTopicLevelTasksFillBlanks::class,
-        Commands\GenerateTopicLevelMatchTranslation::class
+        Commands\GenerateTopicLevelMatchTranslation::class,
+        Commands\GenerateDialogs::class
     ];
 
     /**

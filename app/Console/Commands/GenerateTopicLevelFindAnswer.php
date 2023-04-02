@@ -20,7 +20,7 @@ class GenerateTopicLevelFindAnswer extends GenerateTopicLevelTasksFillBlanks
      */
     protected $signature = 'app:generate-topic-level-tasks-find-answer';
     protected $taskName = 'find_answer';
-    protected $jsonTemplate = '{"1": [{"task": "Tervehdys, jota käytetään aamulla.", "translated_task": "A greeting used in the morning.", "answer":"Hyvää huomenta", "translated_answer":"Good morning"}]}';
+    protected string $jsonTemplate = '{"1": [{"task": "Tervehdys, jota käytetään aamulla.", "translated_task": "A greeting used in the morning.", "answer":"Hyvää huomenta", "translated_answer":"Good morning"}]}';
 
     public function specificTaskValidation($dictionary) {
         if ($dictionary['task'] == $dictionary['answer']) {
