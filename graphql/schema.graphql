@@ -31,6 +31,26 @@ type TopicLevel {
     word_list: WordList! @belongsTo(relation: "word_list")
 }
 
+type TopicLevelTask {
+    id: ID!
+    topic_level: TopicLevel! @belongsTo(relation: "topic_level")
+    task: Task! @belongsTo(relation: "task")
+    task_data: String!
+}
+
+type WordListTask {
+    id: ID!
+    word_list: TopicLevel! @belongsTo(relation: "word_list")
+    task: Task! @belongsTo(relation: "task")
+    task_data: String!
+}
+
+type Dialog {
+    id: ID!
+    word_list: WordList! @belongsTo(relation: "word_list")
+    dialog_data: String!
+}
+
 type Query {
     user(id: ID! @eq): User @find
     users: [User!]! @paginate
@@ -54,4 +74,18 @@ type Query {
         topic_id: Int @where(operator: "like")
         level_id: Int @where(operator: "like")
     ): [TopicLevel!]! @all
+
+    topic_level_task(
+        topic_level_id: Int @where(operator: "like")
+        task_id: Int @where(operator: "like")
+    ): [TopicLevelTask!]! @all
+
+    word_list_task(
+        word_list_id: Int @where(operator: "like")
+        task_id: Int @where(operator: "like")
+    ): [WordListTask!]! @all
+
+    dialog_by_word_list_id(
+        word_list_id: Int @where(operator: "like")
+    ): [Dialog!]! @all
 }
