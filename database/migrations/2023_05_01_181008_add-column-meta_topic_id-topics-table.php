@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('topics', function(Blueprint $table) {
-            $table->unsignedBigInteger('meta_topic_id');
+            //$table->unsignedBigInteger('meta_topic_id');
             $table->foreign('meta_topic_id')->references('id')->on('meta_topics');
         });
     }
