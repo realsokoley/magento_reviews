@@ -24,4 +24,12 @@ class Topic extends Model
     {
         return $this->hasMany('App\Models\TopicLevel', 'topic_id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function metaTopic()
+    {
+        return $this->belongsTo('App\Models\MetaTopic');
+    }
 }
