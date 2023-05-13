@@ -76,7 +76,7 @@ type Query {
     topic_by_topic_name(topic: String! @where(operator: "like")): [Topic!]! @all
     topic_by_meta_topic(
         meta_topic_id: Int @where(operator: "like")
-    ): [MetaTopic!]! @all
+    ): [Topic!]! @all
 
     levels: [Level!]! @all
     level(id: ID! @eq): Level @find
