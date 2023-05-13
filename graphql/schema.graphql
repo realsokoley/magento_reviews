@@ -14,9 +14,15 @@ type Task {
     name: String!
 }
 
+type MetaTopic {
+    id: ID!
+    meta_topic: String!
+}
+
 type Topic {
     id: ID!
     topic: String!
+    meta_topic: MetaTopic! @belongsTo(relation: "metaTopic")
 }
 
 type Level {
@@ -61,6 +67,9 @@ type Query {
     tasks: [Task!]! @all
     task(id: ID! @eq): Task @find
     task_by_name(name: String! @where(operator: "like")): [Task!]! @all
+
+    meta_topics: [MetaTopic!]! @all
+    meta_topic(id: ID! @eq): MetaTopic @find
 
     topics: [Topic!]! @all
     topic(id: ID! @eq): Topic @find
