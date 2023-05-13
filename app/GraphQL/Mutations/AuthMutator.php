@@ -30,7 +30,6 @@ class AuthMutator
             $user->api_token = $token;
             $user->paid = 0;
             $user->active = 1;
-            $user->games_left = 5;
             $user->save();
 
             $userData = [
