@@ -60,6 +60,7 @@ type Dialog {
 type Query {
     user(id: ID! @eq): User @find
     users: [User!]! @paginate
+    me: User @auth(guard: "api")
 
     word_list(id: ID! @eq): WordList @find
     word_lists: [WordList!]! @all
