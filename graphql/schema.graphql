@@ -114,5 +114,5 @@ type Mutation {
     login(
         email: String!
         password: String!
-    ): String @field(resolver: "AuthMutator@resolver")
+    ): String @field(resolver: "AuthMutator@resolve")
 }
