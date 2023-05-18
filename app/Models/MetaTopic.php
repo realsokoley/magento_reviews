@@ -15,7 +15,7 @@ class MetaTopic extends Model
      * @var array
      */
     protected $fillable = [
-        'meta_topic', 'description'
+        'meta_topic', 'description', 'image_url'
     ];
 
     /**
