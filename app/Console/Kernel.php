@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
         Commands\GenerateTopicLevelFindAnswer::class,
         Commands\GenerateTopicLevelTasksFillBlanks::class,
         Commands\GenerateTopicLevelMatchTranslation::class,
-        Commands\GenerateDialogs::class
+        Commands\GenerateDialogs::class,
+        Commands\PopulateMaxRating::class,
     ];
 
     /**
