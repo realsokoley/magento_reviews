@@ -8,7 +8,7 @@ use Illuminate\Console\Command;
 
 class PopulateMaxRating extends Command
 {
-    private const RATING_MAX = 4;
+    private const RATING_MAX = 12;
     protected array $wordLists = [];
 
     /**
@@ -37,15 +37,16 @@ class PopulateMaxRating extends Command
             foreach ($wordListTasks as $wordListTask) {
                 $taskData = \json_decode($wordListTask['task_data'], true);
                 $maxRating = isset($taskData[0]) ? count($taskData[0]) : 0;
-                $maxRating = $maxRating <= self::RATING_MAX ? $maxRating : self::RATING_MAX;
 
                 $wordListTaskModel = WordListTask::find($wordListTask['id']);
                 $wordListTaskModel->max_rating = $maxRating;
                 $wordListTaskModel->save();
                 $sum += $maxRating;
             }
+            $maxSumRating = $sum <= self::RATING_MAX ? $sum : self::RATING_MAX;
+
             $wordListModel = WordList::find($wordList['id']);
-            $wordListModel->max_rating = $sum;
+            $wordListModel->max_rating = $maxSumRating;
             $wordListModel->save();
         }
     }
