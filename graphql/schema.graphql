@@ -26,8 +26,6 @@ type MetaTopicRating {
     rating: Int!
 }
 
-scalar MetaTopicRatingMap
-
 type Topic {
     id: ID!
     topic: String!
