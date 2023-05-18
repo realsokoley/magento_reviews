@@ -89,7 +89,7 @@ type Query {
 
     metaTopicsRating: [MetaTopicRating!]!
         @field(resolver: "MetaTopicsRating@resolve")
-        @auth(guard: "api")
+        @guard(with: ["api"])
 
     topics: [Topic!]! @all
     topic(id: ID! @eq): Topic @find
