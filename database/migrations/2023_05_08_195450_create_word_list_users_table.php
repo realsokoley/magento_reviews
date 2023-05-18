@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('word_list_users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('word_list_id');
-            $table->unsignedBigInteger('user_id');
+            $table->integer('user_id');
             $table->unsignedBigInteger('rating')->nullable();
 
             $table->foreign('word_list_id')->references('id')->on('word_lists');
