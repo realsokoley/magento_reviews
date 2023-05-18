@@ -2,6 +2,8 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\Models\WordList;
+use App\Models\WordListUser;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -10,6 +12,8 @@ use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
 class AuthMutator
 {
+    private array $wordLists = [];
+
     /**
      * Return a value for the field.
      *
@@ -38,9 +42,29 @@ class AuthMutator
                 'token' => $user->api_token
             ];
 
+            $wordLists = $this->getWordLists();
+            foreach ($wordLists as $wordList) {
+                $wordListUser = new WordListUser();
+                $wordListUser->word_list_id = $wordList['id'];
+                $wordListUser->user_id = $user->id;
+                $wordListUser->rating = 0;
+
+                $wordListUser->save();
+            }
+
             return \json_encode($userData);
         }
 
         return null;
+    }
+
+    public function getWordLists(): array
+    {
+        if ($this->wordLists) {
+            return $this->wordLists;
+        }
+
+        $this->wordLists = WordList::whereNotNull('list')->get()->toArray();
+        return $this->wordLists;
     }
 }
