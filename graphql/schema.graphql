@@ -18,7 +18,15 @@ type Task {
 type MetaTopic {
     id: ID!
     meta_topic: String!
+    description: String!
 }
+
+type MetaTopicRating {
+    metaTopic: MetaTopic!
+    rating: Int!
+}
+
+scalar MetaTopicRatingMap
 
 type Topic {
     id: ID!
@@ -80,6 +88,10 @@ type Query {
 
     meta_topics: [MetaTopic!]! @all
     meta_topic(id: ID! @eq): MetaTopic @find
+
+    metaTopicsRating: [MetaTopicRating!]!
+    @field(resolver: "MetaTopicsRating@resolve")
+    @auth(guard: "api")
 
     topics: [Topic!]! @all
     topic(id: ID! @eq): Topic @find
