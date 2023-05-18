@@ -19,6 +19,7 @@ type MetaTopic {
     id: ID!
     meta_topic: String!
     description: String!
+    image_url: String!
 }
 
 type MetaTopicRating {
