@@ -14,7 +14,7 @@ class WordList extends Model
      * @var array
      */
     protected $fillable = [
-        'list',
+        'list', 'max_rating'
     ];
 
     /**
@@ -23,5 +23,13 @@ class WordList extends Model
     public function topicLevels()
     {
         return $this->hasMany('App\Models\TopicLevel', 'word_list_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function wordListUsers()
+    {
+        return $this->hasMany('App\Models\WordListUser', 'word_list_id');
     }
 }

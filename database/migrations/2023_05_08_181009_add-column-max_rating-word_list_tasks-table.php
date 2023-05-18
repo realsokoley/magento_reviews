@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('word_lists', function(Blueprint $table) {
+        Schema::table('word_list_tasks', function(Blueprint $table) {
             $table->unsignedBigInteger('max_rating');
         });
     }

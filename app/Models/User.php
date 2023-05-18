@@ -32,4 +32,11 @@ class User extends Authenticatable
      */
     protected $fillable = ['username', 'name', 'email', 'email_verified_at', 'password', 'api_token', 'remember_token', 'created_at', 'updated_at', 'paid', 'active', 'payment_date'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function wordListUsers()
+    {
+        return $this->hasMany('App\Models\WordListUser', 'user_id');
+    }
 }

@@ -14,7 +14,7 @@ class TopicLevel extends Model
      * @var array
      */
     protected $fillable = [
-        'max_rating'
+
     ];
 
     /**

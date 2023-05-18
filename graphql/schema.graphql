@@ -6,6 +6,7 @@ type User {
 type WordList {
     id: ID!
     list: String!
+    max_rating: Int!
 }
 
 type Task {
@@ -35,7 +36,6 @@ type TopicLevel {
     topic: Topic! @belongsTo(relation: "topic")
     level: Level! @belongsTo(relation: "level")
     wordList: WordList! @belongsTo(relation: "wordList")
-    max_rating: Int!
 }
 
 type TopicLevelTask {
@@ -50,6 +50,14 @@ type WordListTask {
     wordList: WordList! @belongsTo(relation: "wordList")
     task: Task! @belongsTo(relation: "task")
     task_data: String!
+    max_rating: Int!
+}
+
+type WordListUser {
+    id: ID!
+    wordList: WordList! @belongsTo(relation: "wordList")
+    user: User! @belongsTo(relation: "user")
+    rating: Int!
 }
 
 type Dialog {
@@ -98,6 +106,11 @@ type Query {
         word_list_id: Int @where(operator: "like")
         task_id: Int @where(operator: "like")
     ): [WordListTask!]! @all
+
+    word_list_user(
+        word_list_id: Int @where(operator: "like")
+        user_id: Int @where(operator: "like")
+    ): [WordListUser!]! @all
 
     dialog_by_word_list_id(
         word_list_id: Int @where(operator: "like")
