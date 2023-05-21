@@ -33,7 +33,7 @@ class TopicsRating
     {
         $maxRating = 0;
         $rating = 0;
-        $topicLevels = TopicLevel::where('topic_id', $topic['id'])->get()->toArray();
+        $topicLevels = TopicLevel::where('topic_id', $topic->id)->get()->toArray();
         foreach ($topicLevels as $topicLevel) {
             $wordList = WordList::find($topicLevel['word_list_id']);
             $maxRating += (int)$wordList->max_rating;
