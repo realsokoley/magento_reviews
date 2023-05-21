@@ -17,6 +17,7 @@ class TopicsRating
         $topics = isset($args['meta_topic_id']) ?
             Topic::where('meta_topic_id', $args['meta_topic_id'])->get()->toArray():
             Topic::whereNotNull('meta_topic_id')->get()->toArray();
+        print_r($topics); exit();
         $result = [];
 
         foreach ($topics as $topic) {
