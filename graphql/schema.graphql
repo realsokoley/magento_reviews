@@ -110,7 +110,7 @@ type Query {
 
     topics_with_rating_by_meta_topic(
         meta_topic_id: Int @where(operator: "like")
-    ): [Topic!]!
+    ): [TopicRating!]!
     @field(resolver: "TopicsRating@resolve")
     @guard(with: ["api"])
 
