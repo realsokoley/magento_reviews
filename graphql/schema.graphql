@@ -108,6 +108,12 @@ type Query {
         meta_topic_id: Int @where(operator: "like")
     ): [Topic!]! @all
 
+    topics_with_rating_by_meta_topic(
+        meta_topic_id: Int @where(operator: "like")
+    ): [Topic!]!
+    @field(resolver: "TopicsRating@resolve")
+    @guard(with: ["api"])
+
     levels: [Level!]! @all
     level(id: ID! @eq): Level @find
     level_by_level_name(level: String! @where(operator: "like")): [Level!]! @all

@@ -14,7 +14,7 @@ class TopicsRating
     public function resolve($rootValue, array $args, GraphQLContext $context)
     {
         $user = $context->user();
-        $topics = Topic::all();
+        $topics = Topic::where('meta_topic_id', $args['meta_topic_id'])->get()->toArray();
         $result = [];
 
         foreach ($topics as $topic) {
