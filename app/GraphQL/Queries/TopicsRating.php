@@ -15,9 +15,8 @@ class TopicsRating
     {
         $user = $context->user();
         $topics = isset($args['meta_topic_id']) ?
-            Topic::where('meta_topic_id', $args['meta_topic_id'])->get()->toArray():
-            Topic::whereNotNull('meta_topic_id')->get()->toArray();
-        print_r($topics); exit();
+            Topic::where('meta_topic_id', $args['meta_topic_id'])->get():
+            Topic::whereNotNull('meta_topic_id')->get();
         $result = [];
 
         foreach ($topics as $topic) {
