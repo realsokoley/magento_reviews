@@ -14,7 +14,9 @@ class TopicsRating
     public function resolve($rootValue, array $args, GraphQLContext $context)
     {
         $user = $context->user();
-        $topics = Topic::where('meta_topic_id', $args['meta_topic_id'])->get()->toArray();
+        $topics = isset($args['meta_topic_id']) ?
+            Topic::where('meta_topic_id', $args['meta_topic_id'])->get()->toArray():
+            Topic::whereNotNull('meta_topic_id')->get()->toArray();
         $result = [];
 
         foreach ($topics as $topic) {
@@ -31,7 +33,7 @@ class TopicsRating
     {
         $maxRating = 0;
         $rating = 0;
-        $topicLevels = TopicLevel::where('topic_id', $topic->id)->get()->toArray();
+        $topicLevels = TopicLevel::where('topic_id', $topic['id'])->get()->toArray();
         foreach ($topicLevels as $topicLevel) {
             $wordList = WordList::find($topicLevel['word_list_id']);
             $maxRating += (int)$wordList->max_rating;
