@@ -33,6 +33,11 @@ type Topic {
     meta_topic: MetaTopic! @belongsTo(relation: "metaTopic")
 }
 
+type TopicRating {
+    topic: Topic!
+    rating: Int!
+}
+
 type Level {
     id: ID!
     level: String!
@@ -90,6 +95,10 @@ type Query {
 
     metaTopicsRating: [MetaTopicRating!]!
         @field(resolver: "MetaTopicsRating@resolve")
+        @guard(with: ["api"])
+
+    topicsRating: [TopicRating!]!
+        @field(resolver: "TopicsRating@resolve")
         @guard(with: ["api"])
 
     topics: [Topic!]! @all
