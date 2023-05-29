@@ -40,12 +40,9 @@ class PopulateMaxRating extends Command
                 if (is_array($taskData)) {
                     if (isset($taskData[0]) && is_array($taskData[0])) {
                         if (isset($taskData[0][0]) && is_array($taskData[0][0])) {
-                            if (isset($taskData[0][0][0]) && is_array($taskData[0][0][0])) {
-                                print_r($taskData[0][0]);
-                                $maxRating = count($taskData[0][0]);
-                            } else {
-                                $maxRating = count($taskData[0]);
-                            }
+                            $maxRating = count($taskData[0]);
+                        } else {
+                            $maxRating = count($taskData);
                         }
                     } else {
                         $maxRating = count($taskData);
