@@ -45,6 +45,7 @@ class PopulateMaxRating extends Command
                             $maxRating = count($taskData);
                         }
                     } else {
+                        print_r($wordListTask['id']);
                         print_r($taskData); exit;
 
                         $maxRating = count($taskData);
