@@ -38,8 +38,8 @@ class PopulateMaxRating extends Command
                 $taskData = \json_decode($wordListTask['task_data'], true);
 
                 if (is_array($taskData)) {
-                    if (is_array($taskData[0])) {
-                        $maxRating = isset($taskData[0]) ? count($taskData[0]) : 0;
+                    if (isset($taskData[0]) && is_array($taskData[0])) {
+                        $maxRating = count($taskData[0]);
                     }
                     else {
                         $maxRating = count($taskData);
