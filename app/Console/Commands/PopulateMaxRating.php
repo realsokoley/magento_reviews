@@ -34,6 +34,7 @@ class PopulateMaxRating extends Command
         foreach ($wordLists as $wordList) {
             $wordListTasks = $this->getWordListTasks($wordList['id']);
             $sum = 0;
+            $countArray = [];
             foreach ($wordListTasks as $wordListTask) {
                 $taskData = \json_decode($wordListTask['task_data'], true);
 
@@ -50,15 +51,27 @@ class PopulateMaxRating extends Command
                 }
 
                 $wordListTaskModel = WordListTask::find($wordListTask['id']);
-                $wordListTaskModel->max_rating = $maxRating;
+                $wordListTaskModel->count = $maxRating;
                 $wordListTaskModel->save();
                 $sum += $maxRating;
+
+                $countArray[$wordListTask['task_id']] =  $maxRating;
             }
+
+            $ratingArray = $this->getMaxRatingForRequestedArray($countArray);
+            foreach ($wordListTasks as $wordListTask) {
+                $maxRating = $ratingArray[$wordListTask['task_id']];
+                $wordListTaskModel = WordListTask::find($wordListTask['id']);
+                $wordListTaskModel->max_rating = $maxRating;
+                $wordListTaskModel->save();
+            }
+
             $maxSumRating = $sum <= self::RATING_MAX ? $sum : self::RATING_MAX;
 
             $wordListModel = WordList::find($wordList['id']);
             $wordListModel->max_rating = $maxSumRating;
             $wordListModel->save();
+
         }
     }
 
@@ -75,5 +88,45 @@ class PopulateMaxRating extends Command
     public function getWordListTasks(Int $id): array
     {
         return WordListTask::where('word_list_id', $id)->get()->toArray();
+    }
+
+    public function getMaxRatingForRequestedArray($countArray): array
+    {
+        $n = $countArray[1];
+        $m = $countArray[2];
+        $k = $countArray[3];
+
+        if ($n + $m + $k <= self::RATING_MAX) {
+            $n1 = $n;
+            $m1 = $m;
+            $k1 = $k;
+        } else {
+            $n1 = $m1 = $k1 = min($n, $m, $k);
+
+            $remaining_points = self::RATING_MAX - 3 * $n1;
+
+            while ($remaining_points > 0) {
+                if ($n1 < $n) {
+                    $n1++;
+                    $remaining_points--;
+                }
+
+                if ($m1 < $m && $remaining_points > 0) {
+                    $m1++;
+                    $remaining_points--;
+                }
+
+                if ($k1 < $k && $remaining_points > 0) {
+                    $k1++;
+                    $remaining_points--;
+                }
+            }
+        }
+
+        return [
+            1 => $n1,
+            2 => $m1,
+            3 => $k1
+        ];
     }
 }
