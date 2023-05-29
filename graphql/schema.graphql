@@ -156,4 +156,10 @@ type Mutation {
         email: String!
         password: String!
     ): String @field(resolver: "AuthMutator@resolve")
+
+    adjustUserWordListResult(
+        word_list_id: Int!
+        rating: Int!
+    ): WordListUser @field(resolver: "AdjustUserWordListResult@resolve")
+    @guard(with: ["api"])
 }
