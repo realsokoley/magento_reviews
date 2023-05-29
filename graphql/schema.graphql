@@ -62,6 +62,7 @@ type WordListTask {
     wordList: WordList! @belongsTo(relation: "wordList")
     task: Task! @belongsTo(relation: "task")
     task_data: String!
+    count: Int!
     max_rating: Int!
 }
 

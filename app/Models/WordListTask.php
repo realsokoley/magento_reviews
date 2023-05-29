@@ -14,7 +14,7 @@ class WordListTask extends Model
      * @var array
      */
     protected $fillable = [
-        'task_data',
+        'task_data', 'max_rating', 'count'
     ];
 
 
