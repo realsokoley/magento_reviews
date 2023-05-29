@@ -36,10 +36,14 @@ class PopulateMaxRating extends Command
             $sum = 0;
             foreach ($wordListTasks as $wordListTask) {
                 $taskData = \json_decode($wordListTask['task_data'], true);
-                if ($wordListTask['task_id'] == 3) {
-                    $maxRating = count($taskData);
-                } else {
-                    $maxRating = isset($taskData[0]) ? count($taskData[0]) : 0;
+
+                if (is_array($taskData)) {
+                    if (is_array($taskData[0])) {
+                        $maxRating = isset($taskData[0]) ? count($taskData[0]) : 0;
+                    }
+                    else {
+                        $maxRating = count($taskData);
+                    }
                 }
 
                 $wordListTaskModel = WordListTask::find($wordListTask['id']);
