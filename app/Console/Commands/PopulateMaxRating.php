@@ -101,21 +101,18 @@ class PopulateMaxRating extends Command
             $m1 = $m;
             $k1 = $k;
         } else {
-            $n1 = $m1 = $k1 = min($n, $m, $k);
-
-            $remaining_points = self::RATING_MAX - 3 * $n1;
+            $n1 = $m1 = $k1 = min(intval(12/3), $n, $m, $k);
+            $remaining_points = 12 - ($n1 + $m1 + $k1);
 
             while ($remaining_points > 0) {
                 if ($n1 < $n) {
                     $n1++;
                     $remaining_points--;
                 }
-
                 if ($m1 < $m && $remaining_points > 0) {
                     $m1++;
                     $remaining_points--;
                 }
-
                 if ($k1 < $k && $remaining_points > 0) {
                     $k1++;
                     $remaining_points--;
