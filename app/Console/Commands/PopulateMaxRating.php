@@ -36,10 +36,6 @@ class PopulateMaxRating extends Command
             $sum = 0;
             foreach ($wordListTasks as $wordListTask) {
                 $taskData = \json_decode($wordListTask['task_data'], true);
-                if ($wordListTask['id'] == 3) {
-                    print_r($wordListTask['id']);
-                    print_r($taskData); exit;
-                }
 
                 if (is_array($taskData)) {
                     if (isset($taskData[0]) && is_array($taskData[0])) {
