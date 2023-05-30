@@ -44,18 +44,6 @@ class AuthMutator
 
             $wordListsUser = WordListUser::all();
 
-            if (count($wordListsUser) == 0) {
-                $wordLists = $this->getWordLists();
-                foreach ($wordLists as $wordList) {
-                    $wordListUser = new WordListUser();
-                    $wordListUser->word_list_id = $wordList['id'];
-                    $wordListUser->user_id = $user->id;
-                    $wordListUser->rating = 0;
-
-                    $wordListUser->save();
-                }
-            }
-
             return \json_encode($userData);
         }
 
