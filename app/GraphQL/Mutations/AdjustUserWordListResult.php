@@ -18,6 +18,12 @@ class AdjustUserWordListResult
             ]
         )->first();
 
+        if (!$wordListUser) {
+            $wordListUser = new WordListUser();
+            $wordListUser->word_list_id = $args['word_list_id'];
+            $wordListUser->user_id = $context->user()->id;
+        }
+
         $wordListUser->rating = $args['rating'];
         $wordListUser->save();
 
