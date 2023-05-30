@@ -42,8 +42,6 @@ class AuthMutator
                 'token' => $user->api_token
             ];
 
-            $wordListsUser = WordListUser::all();
-
             return \json_encode($userData);
         }
 
