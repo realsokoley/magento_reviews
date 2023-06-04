@@ -33,6 +33,18 @@ type Topic {
     meta_topic: MetaTopic! @belongsTo(relation: "metaTopic")
 }
 
+type UserFavoriteTopic {
+    id: ID!
+    user: User! @belongsTo(relation: "user")
+    topic: Topic! @belongsTo(relation: "topic")
+}
+
+type UserFavoriteMetaTopic {
+    id: ID!
+    user: User! @belongsTo(relation: "user")
+    meta_topic: MetaTopic! @belongsTo(relation: "metaTopic")
+}
+
 type TopicRating {
     topic: Topic!
     rating: Int!
