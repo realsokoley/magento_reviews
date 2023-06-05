@@ -32,4 +32,12 @@ class Topic extends Model
     {
         return $this->belongsTo('App\Models\MetaTopic');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function userFavoriteTopics()
+    {
+        return $this->hasMany('App\Models\UserFavoriteTopic', 'topic_id');
+    }
 }

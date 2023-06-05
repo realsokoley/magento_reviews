@@ -114,6 +114,14 @@ type Query {
         @field(resolver: "TopicsRating@resolve")
         @guard(with: ["api"])
 
+    metaTopicsFavorites: [MetaTopic!]!
+    @field(resolver: "MetaTopicsRatingFavorites@resolve")
+    @guard(with: ["api"])
+
+    topicsFavorites: [Topic!]!
+    @field(resolver: "TopicsRatingFavorites@resolve")
+    @guard(with: ["api"])
+
     topics: [Topic!]! @all
     topic(id: ID! @eq): Topic @find
     topic_by_topic_name(topic: String! @where(operator: "like")): [Topic!]! @all
@@ -173,5 +181,17 @@ type Mutation {
         word_list_id: Int!
         rating: Int!
     ): WordListUser @field(resolver: "AdjustUserWordListResult@resolve")
+    @guard(with: ["api"])
+
+    addThemeToFavorites(
+        topic_id: Int!
+    ): UserFavoriteTopic
+    @field(resolver: "AddThemeToFavorites@resolve")
+    @guard(with: ["api"])
+
+    addMetaThemeToFavorites(
+        meta_topic_id: Int!
+    ): UserFavoriteMetaTopic
+    @field(resolver: "AddMetaThemeToFavorites@resolve")
     @guard(with: ["api"])
 }

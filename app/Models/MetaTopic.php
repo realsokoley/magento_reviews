@@ -25,4 +25,12 @@ class MetaTopic extends Model
     {
         return $this->hasMany('App\Models\Topic', 'meta_topic_id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function userFavoriteMetaTopics()
+    {
+        return $this->hasMany('App\Models\UserFavoriteMetaTopic', 'meta_topic_id');
+    }
 }

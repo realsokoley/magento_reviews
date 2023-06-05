@@ -39,4 +39,20 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\WordListUser', 'user_id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function userFavoriteTopics()
+    {
+        return $this->hasMany('App\Models\UserFavoriteTopic', 'user_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function userFavoriteMetaTopics()
+    {
+        return $this->hasMany('App\Models\UserFavoriteMetaTopic', 'user_id');
+    }
 }
