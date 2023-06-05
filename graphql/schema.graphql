@@ -194,4 +194,16 @@ type Mutation {
     ): UserFavoriteMetaTopic
     @field(resolver: "AddMetaThemeToFavorites@resolve")
     @guard(with: ["api"])
+
+    removeThemeFromFavorites(
+        topic_id: Int!
+    ): String
+    @field(resolver: "RemoveThemeFromFavorites@resolve")
+    @guard(with: ["api"])
+
+    removeMetaThemeFromFavorites(
+        topic_id: Int!
+    ): String
+    @field(resolver: "RemoveMetaThemeFromFavorites@resolve")
+    @guard(with: ["api"])
 }
