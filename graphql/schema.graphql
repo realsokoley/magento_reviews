@@ -156,6 +156,14 @@ type Query {
     dialog_by_word_list_id(
         word_list_id: Int @where(operator: "like")
     ): [Dialog!]! @all
+
+    metaTopicsFavorites: [MetaTopic!]!
+    @field(resolver: "MetaTopicsRatingFavorites@resolve")
+    @guard(with: ["api"])
+
+    topicsFavorites: [Topic!]!
+    @field(resolver: "TopicsRatingFavorites@resolve")
+    @guard(with: ["api"])
 }
 
 type Mutation {
