@@ -196,7 +196,7 @@ type Mutation {
     @guard(with: ["api"])
 
     removeMetaThemeFromFavorites(
-        topic_id: Int!
+        meta_topic_id: Int!
     ): String
     @field(resolver: "RemoveMetaThemeFromFavorites@resolve")
     @guard(with: ["api"])
