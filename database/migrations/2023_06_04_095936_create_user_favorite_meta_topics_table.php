@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('user_favorite_meta_topics', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('meta_topic_id');
-            $table->unsignedBigInteger('user_id');
+            $table->integer('user_id');
 
             $table->foreign('meta_topic_id')->references('id')->on('meta_topics');
             $table->foreign('user_id')->references('id')->on('users');
