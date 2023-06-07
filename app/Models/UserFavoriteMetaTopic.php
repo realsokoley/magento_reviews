@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserFavoriteMetaTopic
+class UserFavoriteMetaTopic extends Model
 {
     public $timestamps = false;
 
