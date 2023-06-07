@@ -116,14 +116,6 @@ type Query {
         @field(resolver: "TopicsRating@resolve")
         @guard(with: ["api"])
 
-    metaTopicsFavorites: [MetaTopic!]!
-    @field(resolver: "MetaTopicsRatingFavorites@resolve")
-    @guard(with: ["api"])
-
-    topicsFavorites: [Topic!]!
-    @field(resolver: "TopicsRatingFavorites@resolve")
-    @guard(with: ["api"])
-
     topics: [Topic!]! @all
     topic(id: ID! @eq): Topic @find
     topic_by_topic_name(topic: String! @where(operator: "like")): [Topic!]! @all
