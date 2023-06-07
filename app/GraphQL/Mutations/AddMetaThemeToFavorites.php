@@ -19,7 +19,7 @@ class AddMetaThemeToFavorites
         )->first();
 
         if (!$userFavoriteMetaTopic) {
-            $userFavoriteMetaTopic = new WordListUser();
+            $userFavoriteMetaTopic = new UserFavoriteMetaTopic();
             $userFavoriteMetaTopic->meta_topic_id = $args['meta_topic_id'];
             $userFavoriteMetaTopic->user_id = $context->user()->id;
 

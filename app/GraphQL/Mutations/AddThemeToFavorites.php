@@ -19,7 +19,7 @@ class AddThemeToFavorites
         )->first();
 
         if (!$userFavoriteTopic) {
-            $userFavoriteTopic = new WordListUser();
+            $userFavoriteTopic = new UserFavoriteTopic();
             $userFavoriteTopic->topic_id = $args['topic_id'];
             $userFavoriteTopic->user_id = $context->user()->id;
 
