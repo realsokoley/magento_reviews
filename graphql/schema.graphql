@@ -25,6 +25,7 @@ type MetaTopic {
 type MetaTopicRating {
     metaTopic: MetaTopic!
     rating: Int!
+    is_favorite: Boolean!
 }
 
 type Topic {
@@ -48,6 +49,7 @@ type UserFavoriteMetaTopic {
 type TopicRating {
     topic: Topic!
     rating: Int!
+    is_favorite: Boolean!
 }
 
 type Level {

@@ -5,6 +5,7 @@ namespace App\GraphQL\Queries;
 use App\Models\MetaTopic;
 use App\Models\Topic;
 use App\Models\TopicLevel;
+use App\Models\UserFavoriteMetaTopic;
 use App\Models\WordList;
 use App\Models\WordListUser;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
@@ -21,6 +22,7 @@ class MetaTopicsRating
             $result[] = [
                 'metaTopic' => $metaTopic,
                 'rating' => $this->calculateValue($metaTopic, $user),
+                'is_favorite' => $this->isFavorite($metaTopic, $user)
             ];
         }
 
@@ -52,5 +54,21 @@ class MetaTopicsRating
         }
 
         return $maxRating == 0 ? 0 : (int) ($rating * 100 / $maxRating);
+    }
+
+    private function isFavorite($metaTopic, $user)
+    {
+        $userFavorites = UserFavoriteMetaTopic::where(
+            [
+                ['meta_topic_id', "=", $metaTopic->id],
+                ['user_id', '=', $user->id]
+            ]
+        )->get()->toArray();
+
+        if (count($userFavorites) > 0) {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -5,6 +5,7 @@ namespace App\GraphQL\Queries;
 use App\Models\MetaTopic;
 use App\Models\Topic;
 use App\Models\TopicLevel;
+use App\Models\UserFavoriteTopic;
 use App\Models\WordList;
 use App\Models\WordListUser;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
@@ -23,6 +24,7 @@ class TopicsRating
             $result[] = [
                 'topic' => $topic,
                 'rating' => $this->calculateValue($topic, $user),
+                'is_favorite' => $this->isFavorite($topic, $user)
             ];
         }
 
@@ -52,4 +54,21 @@ class TopicsRating
 
         return $maxRating == 0 ? 0 : (int) ($rating * 100 / $maxRating);
     }
+
+    private function isFavorite($topic, $user)
+    {
+        $userFavorites = UserFavoriteTopic::where(
+            [
+                ['topic_id', "=", $topic->id],
+                ['user_id', '=', $user->id]
+            ]
+        )->get()->toArray();
+
+        if (count($userFavorites) > 0) {
+            return true;
+        }
+
+        return false;
+    }
+
 }
