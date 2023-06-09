@@ -157,11 +157,11 @@ type Query {
         word_list_id: Int @where(operator: "like")
     ): [Dialog!]! @all
 
-    metaTopicsFavorites: [MetaTopic!]!
+    metaTopicsFavorites: [MetaTopicRating!]!
     @field(resolver: "MetaTopicsRatingFavorites@resolve")
     @guard(with: ["api"])
 
-    topicsFavorites: [Topic!]!
+    topicsFavorites: [TopicRating!]!
     @field(resolver: "TopicsRatingFavorites@resolve")
     @guard(with: ["api"])
 }
