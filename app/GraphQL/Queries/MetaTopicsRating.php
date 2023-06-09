@@ -56,7 +56,7 @@ class MetaTopicsRating
         return $maxRating == 0 ? 0 : (int) ($rating * 100 / $maxRating);
     }
 
-    private function isFavorite($metaTopic, $user)
+    public function isFavorite($metaTopic, $user)
     {
         $userFavorites = UserFavoriteMetaTopic::where(
             [

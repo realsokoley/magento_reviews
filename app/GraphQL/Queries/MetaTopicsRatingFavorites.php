@@ -10,7 +10,7 @@ use App\Models\WordList;
 use App\Models\WordListUser;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
-class MetaTopicsRatingFavorites
+class MetaTopicsRatingFavorites extends MetaTopicsRating
 {
     public function resolve($rootValue, array $args, GraphQLContext $context)
     {
@@ -28,6 +28,7 @@ class MetaTopicsRatingFavorites
             $result[] = [
                 'metaTopic' => $metaTopic,
                 'rating' => $this->calculateValue($metaTopic, $user),
+                'is_favorite' => $this->isFavorite($metaTopic, $user)
             ];
         }
 

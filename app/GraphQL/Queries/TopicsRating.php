@@ -55,7 +55,7 @@ class TopicsRating
         return $maxRating == 0 ? 0 : (int) ($rating * 100 / $maxRating);
     }
 
-    private function isFavorite($topic, $user)
+    public function isFavorite($topic, $user)
     {
         $userFavorites = UserFavoriteTopic::where(
             [
