@@ -21,7 +21,7 @@ class TopicsRatingFavorites extends TopicsRating
             $favorites[] = $favorite['topic_id'];
         }
 
-        $topics = Topic::whereIn('id', $favorites);
+        $topics = Topic::whereIn('id', $favorites)->get();
         $result = [];
 
         foreach ($topics as $topic) {

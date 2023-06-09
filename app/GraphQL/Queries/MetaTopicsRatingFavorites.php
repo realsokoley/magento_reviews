@@ -21,7 +21,7 @@ class MetaTopicsRatingFavorites extends MetaTopicsRating
             $favorites[] = $favorite['meta_topic_id'];
         }
 
-        $metaTopics = MetaTopic::whereIn('id', $favorites);
+        $metaTopics = MetaTopic::whereIn('id', $favorites)->get();
         $result = [];
 
         foreach ($metaTopics as $metaTopic) {
