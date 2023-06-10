@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('feedbacks', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->string('email');
+            $table->text('message');
             $table->timestamps();
         });
     }
