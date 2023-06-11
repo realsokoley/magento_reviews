@@ -217,7 +217,7 @@ type Mutation {
     @guard(with: ["api"])
 
     createFeedback(
-        email: String!,
+        email: String!
         message: String!
     ): Feedback
     @field(resolver: "CreateFeedback@resolve")
