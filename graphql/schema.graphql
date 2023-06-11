@@ -215,8 +215,4 @@ type Mutation {
     ): String
     @field(resolver: "RemoveMetaThemeFromFavorites@resolve")
     @guard(with: ["api"])
-
-    createFeedback(email: String!, message: String!): Feedback
-    @field(resolver: "CreateFeedbackMutation@resolve")
-    @guard(with: ["api"])
 }
