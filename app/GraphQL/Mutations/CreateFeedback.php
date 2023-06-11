@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\GraphQL\Mutations;
+namespace App\GraphQL\Mutations;
 
 use App\Models\Feedback;
 use Illuminate\Support\Facades\Mail;
