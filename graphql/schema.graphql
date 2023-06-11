@@ -87,6 +87,13 @@ type WordListUser {
     rating: Int!
 }
 
+type Feedback {
+    id: ID!
+    user: User! @belongsTo(relation: "user")
+    email: String!
+    message: String!
+}
+
 type Dialog {
     id: ID!
     wordList: WordList! @belongsTo(relation: "wordList")
