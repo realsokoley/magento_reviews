@@ -55,4 +55,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\UserFavoriteMetaTopic', 'user_id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function feedbacks()
+    {
+        return $this->hasMany('App\Models\Feedback', 'user_id');
+    }
 }
