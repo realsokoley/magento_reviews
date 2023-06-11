@@ -6,7 +6,7 @@ use App\Models\Feedback;
 use Illuminate\Support\Facades\Mail;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
-class CreateFeedbackMutation
+class CreateFeedback
 {
     public function resolve($rootValue, array $args, GraphQLContext $context)
     {
