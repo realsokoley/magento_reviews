@@ -210,6 +210,6 @@ type Mutation {
     @guard(with: ["api"])
 
     createFeedback(email: String!, message: String!): Feedback
-    @field(resolver: "App\\Http\\GraphQL\\Mutations\\CreateFeedbackMutation@resolve")
+    @field(resolver: "CreateFeedbackMutation@resolve")
     @guard(with: ["api"])
 }
