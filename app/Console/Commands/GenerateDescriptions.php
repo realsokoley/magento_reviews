@@ -27,11 +27,11 @@ class GenerateDescriptions extends GenerateTopicLevelTasksFillBlanks
         $topicArray = Topic::where('description', '')->get()->toArray();
         $metaTopicArray = MetaTopic::where('description', '')->get()->toArray();
         foreach ($topicArray as $topic) {
-            $this->generateTopicDescription($topic->id, $topic->topic);
+            $this->generateTopicDescription($topic['id'], $topic['topic']);
         }
 
         foreach ($metaTopicArray as $topic) {
-            $this->generateMetaTopicDescription($topic->id, $topic->meta_topic);
+            $this->generateMetaTopicDescription($topic['id'], $topic['meta_topic']);
         }
     }
 
