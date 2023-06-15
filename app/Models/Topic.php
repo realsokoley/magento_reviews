@@ -14,7 +14,7 @@ class Topic extends Model
      * @var array
      */
     protected $fillable = [
-        'topic',
+        'topic', 'description'
     ];
 
     /**

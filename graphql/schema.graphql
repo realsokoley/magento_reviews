@@ -32,6 +32,7 @@ type Topic {
     id: ID!
     topic: String!
     meta_topic: MetaTopic! @belongsTo(relation: "metaTopic")
+    description: String!
 }
 
 type UserFavoriteTopic {
