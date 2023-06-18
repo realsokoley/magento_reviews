@@ -158,8 +158,9 @@ type Query {
 
     word_list_user(
         word_list_id: Int @where(operator: "like")
-        user_id: Int @where(operator: "like")
-    ): [WordListUser!]! @all
+    ): [WordListUser!]!
+    @field(resolver: "WordListUser@resolve")
+    @guard(with: ["api"])
 
     dialog_by_word_list_id(
         word_list_id: Int @where(operator: "like")
