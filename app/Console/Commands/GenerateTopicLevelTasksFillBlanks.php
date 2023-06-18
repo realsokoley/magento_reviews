@@ -92,6 +92,7 @@ class GenerateTopicLevelTasksFillBlanks extends Command
         $wordListTask->word_list_id = $id;
         $wordListTask->task_id = $task->id;
         $wordListTask->task_data = $wordListTaskString;
+        $wordListTask->max_rating = 0;
         $wordListTask->save();
     }
 
