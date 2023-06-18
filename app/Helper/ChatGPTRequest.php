@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Http;
 
 class ChatGPTRequest
 {
-    public function ask(string $prompt, string $model): string
+    public function ask(string $prompt, string $model = ''): string
     {
         $response = $this->askToChatGPT($prompt, $model);
 
@@ -33,7 +33,7 @@ class ChatGPTRequest
                     ->withHeaders([
                         'Authorization' => 'Bearer ' . env('CHATGPT_API_KEY'),
                         'Content-Type' => 'application/json',
-                        'model' => $model,
+                        //'model' => $model,
                     ])->post('https://api.openai.com/v1/engines/text-davinci-003/completions', [
                         "prompt" => $prompt,
                         "max_tokens" => 1000,
@@ -45,7 +45,7 @@ class ChatGPTRequest
                         ->withHeaders([
                             'Authorization' => 'Bearer ' . env('CHATGPT_API_KEY'),
                             'Content-Type' => 'application/json',
-                            'model' => $model,
+                            //'model' => $model,
                         ])->post('https://api.openai.com/v1/engines/text-davinci-003/completions', [
                             "prompt" => $prompt,
                             "max_tokens" => 1000,
