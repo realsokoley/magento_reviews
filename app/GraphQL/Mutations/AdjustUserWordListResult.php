@@ -22,9 +22,10 @@ class AdjustUserWordListResult
             $wordListUser = new WordListUser();
             $wordListUser->word_list_id = $args['word_list_id'];
             $wordListUser->user_id = $context->user()->id;
+            $wordListUser->rating = 0;
         }
 
-        $wordListUser->rating = $args['rating'];
+        $wordListUser->rating = max($args['rating'], $wordListUser->rating);
         $wordListUser->save();
 
         return $wordListUser;
