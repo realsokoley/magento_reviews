@@ -91,6 +91,7 @@ class GenerateWordLists extends Command
             }, $wordListString);
             $wordList = new WordList();
             $wordList->list = $wordListString;
+            $wordList->max_rating = 0;
             $wordList->save();
             $topicLevel = new TopicLevel();
             $topicLevel->level_id = $level['id'];
