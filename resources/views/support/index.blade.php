@@ -42,15 +42,15 @@
             </div>
 
             <div class="card">
-                <div class="card-header" id="headingOne">
+                <div class="card-header" id="headingThree">
                     <h2 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
                             Is it possible to adjust word lists?
                         </button>
                     </h2>
                 </div>
 
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#supportAccordion">
+                <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#supportAccordion">
                     <div class="card-body">
                         At the moment, customizing word lists is not a feature that is available. However, we understand the importance of tailoring the learning experience to individual needs, so we are working on introducing this feature in the near future.
                     </div>
@@ -58,15 +58,15 @@
             </div>
 
             <div class="card">
-                <div class="card-header" id="headingTwo">
+                <div class="card-header" id="headingFour">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                             How is the rating counted?
                         </button>
                     </h2>
                 </div>
 
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#supportAccordion">
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#supportAccordion">
                     <div class="card-body">
                         The rating system in OVI is based on the exercises you complete. The more exercises you finish, the higher your rating becomes. This is designed to encourage consistent learning and practice.
                     </div>
@@ -74,15 +74,15 @@
             </div>
 
             <div class="card">
-                <div class="card-header" id="headingTwo">
+                <div class="card-header" id="headingFive">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                             What are the plans for improving the app?
                         </button>
                     </h2>
                 </div>
 
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#supportAccordion">
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#supportAccordion">
                     <div class="card-body">
                         We have several exciting plans for the future development of OVI. This includes expanding the range of languages that the app supports, introducing a feature that allows users to create their own topics with AI-generated exercises and dialogues, and implementing a subscription system for additional features and content. Stay tuned for these updates!
                     </div>
