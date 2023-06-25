@@ -21,13 +21,13 @@
         <h2>Information Collection and Use</h2>
 
         <p>
-            For a better experience, while using our Service, we may require you to provide us with certain personally identifiable information. The information that we request will be retained by us and used as described in this privacy policy.
+            For a better experience, while using our Service, we may require you to provide us with certain personally identifiable information, including but not limited to your username, email, and geographical location data. The information that we request will be retained by us and used as described in this privacy policy.
         </p>
 
         <h2>Contact Us</h2>
 
         <p>
-            If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at support@languagelessons.site.
+            If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at support@languagelessons.site or using feedback form <a href="/support">in this page</a>
         </p>
     </div>
 @endsection
