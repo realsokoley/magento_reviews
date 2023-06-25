@@ -89,8 +89,6 @@
                 </div>
             </div>
 
-            <!-- Repeat the .card structure for each question -->
-
         </div>
 
         <h2 class="mt-5">Contact Us</h2>
