@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <title>@yield('title')</title>
-    <!-- Optional metadata, CSS and JS here -->
-  </head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
   <body>
     <div class="container">
       @yield('content')

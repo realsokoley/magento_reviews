@@ -19,3 +19,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/support', 'App\Http\Controllers\SupportController@index');
 
+Route::post('/support', 'SupportController@submit');
