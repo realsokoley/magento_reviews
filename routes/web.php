@@ -18,5 +18,6 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 Route::get('/support', 'App\Http\Controllers\SupportController@index');
+Route::get('/privacy_policy', 'App\Http\Controllers\PrivacyPolicyController@index');
 
 Route::post('/support', 'App\Http\Controllers\SupportController@submit');
