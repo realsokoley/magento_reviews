@@ -44,7 +44,7 @@
             <div class="card">
                 <div class="card-header" id="headingThree">
                     <h2 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseThree" aria-controls="collapseThree">
                             Is it possible to adjust word lists?
                         </button>
                     </h2>
