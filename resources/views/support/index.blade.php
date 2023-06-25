@@ -50,7 +50,7 @@
                     </h2>
                 </div>
 
-                <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#supportAccordion">
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#supportAccordion">
                     <div class="card-body">
                         At the moment, customizing word lists is not a feature that is available. However, we understand the importance of tailoring the learning experience to individual needs, so we are working on introducing this feature in the near future.
                     </div>
