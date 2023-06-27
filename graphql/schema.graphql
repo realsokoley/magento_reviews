@@ -183,7 +183,7 @@ type Mutation {
         password: String! @hash @rules(apply: ["min:6"])
     ): User @create
 
-    removeUserData: String
+    removeUserData(remove: Boolean): String
         @guard(with: ["api"])
         @field(resolver: "RemoveUserData@resolve")
 
