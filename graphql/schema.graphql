@@ -184,8 +184,8 @@ type Mutation {
     ): User @create
 
     removeUserData: String
-    @guard(with: ["api"])
-    @field(resolver: "RemoveUserData@resolve")
+        @guard(with: ["api"])
+        @field(resolver: "RemoveUserData@resolve")
 
     login(
         email: String!
