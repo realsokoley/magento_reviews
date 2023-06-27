@@ -13,5 +13,7 @@ class RemoveUserData
     {
         $user = $context->user();
         $user->delete();
+
+        return 'ok';
     }
 }
