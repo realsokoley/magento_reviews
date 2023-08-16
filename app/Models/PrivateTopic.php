@@ -18,26 +18,10 @@ class PrivateTopic extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function topicLevels()
-    {
-        return $this->hasMany('App\Models\TopicLevel', 'topic_id');
-    }
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function metaTopic()
+    public function user()
     {
-        return $this->belongsTo('App\Models\MetaTopic');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function userFavoriteTopics()
-    {
-        return $this->hasMany('App\Models\UserFavoriteTopic', 'topic_id');
+        return $this->belongsTo('App\Models\User');
     }
 }

@@ -35,6 +35,15 @@ type Topic {
     description: String!
 }
 
+type PrivateTopic {
+    id: ID!
+    topic: String!
+    description: String!
+    user: User! @belongsTo(relation: "user")
+    ai_words: Boolean!
+    state: Int!
+}
+
 type UserFavoriteTopic {
     id: ID!
     user: User! @belongsTo(relation: "user")
@@ -226,5 +235,11 @@ type Mutation {
         message: String!
     ): Feedback
     @field(resolver: "CreateFeedback@resolve")
+    @guard(with: ["api"])
+
+    addPrivateTopicNoWords(
+        topic: String!
+    ): PrivateTopic
+    @field(resolver: "AddPrivateTopicNoWords@resolve")
     @guard(with: ["api"])
 }

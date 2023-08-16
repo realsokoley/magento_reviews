@@ -17,6 +17,8 @@ return new class extends Migration
             $table->text('description');
             $table->boolean('ai_words');
             $table->integer('state');
+            $table->integer('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
