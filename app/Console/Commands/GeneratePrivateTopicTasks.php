@@ -65,7 +65,7 @@ class GeneratePrivateTopicTasks extends Command
             $wordListIdArray[] = $value['word_list_id'];
         }
 
-        $wordListArray = WordList::where('word_list_id', 'in', $wordListIdArray)->get()->toArray();
+        $wordListArray = WordList::whereIn('id', $wordListIdArray)->get()->toArray();
 
         foreach ($wordListArray as $wordListJson) {
             $wordListTaskMap = $this->getWordListTaskMap();
