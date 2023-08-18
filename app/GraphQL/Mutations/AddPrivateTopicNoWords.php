@@ -34,6 +34,7 @@ class AddPrivateTopicNoWords
         $privateTopic->topic = $args['topic'];
         $privateTopic->ai_words = 0;
         $privateTopic->state = 0;
+        $privateTopic->description = '';
         $privateTopic->save();
 
         return $privateTopic;
