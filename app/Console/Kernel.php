@@ -15,6 +15,8 @@ class Kernel extends ConsoleKernel
         Commands\GenerateTopicLevelMatchTranslation::class,
         Commands\GenerateDialogs::class,
         Commands\PopulateMaxRating::class,
+        Commands\GeneratePrivateTopicWordLists::class,
+        Commands\GeneratePrivateTopicTasks::class
     ];
 
     /**
