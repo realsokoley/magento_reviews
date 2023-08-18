@@ -56,6 +56,10 @@ class GeneratePrivateTopicTasks extends Command
         $privateTopic->state = 3;
         $privateTopic->save();
         $this->generateTopicTasks($privateTopic);
+
+        $privateTopic->state = 4;
+        $privateTopic->save();
+
     }
 
     public function generateTopicTasks($topic)
