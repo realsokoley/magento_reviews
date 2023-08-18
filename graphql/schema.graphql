@@ -242,4 +242,11 @@ type Mutation {
     ): PrivateTopic
     @field(resolver: "AddPrivateTopicNoWords@resolve")
     @guard(with: ["api"])
+
+    addPrivateTopicWithWords(
+        topic: String!
+        words: String!
+    ): PrivateTopic
+    @field(resolver: "addPrivateTopicWithWords@resolve")
+    @guard(with: ["api"])
 }
