@@ -109,8 +109,6 @@ class GeneratePrivateTopicTasks extends Command
 
     public function getPendingTasksPrivateTopic(): PrivateTopic
     {
-        return PrivateTopic::where(
-            ['state', 2]
-        )->first();
+        return PrivateTopic::where('state', 2)->first();
     }
 }
