@@ -52,6 +52,9 @@ class GeneratePrivateTopicTasks extends Command
     public function handle(): void
     {
         $privateTopic = $this->getPendingTasksPrivateTopic();
+        if (!$privateTopic) {
+            return;
+        }
         $privateTopic->state = 3;
         $privateTopic->save();
         $this->generateTopicTasks($privateTopic);
@@ -107,7 +110,7 @@ class GeneratePrivateTopicTasks extends Command
         }
     }
 
-    public function getPendingTasksPrivateTopic(): PrivateTopic
+    public function getPendingTasksPrivateTopic(): ?PrivateTopic
     {
         return PrivateTopic::where('state', 2)->first();
     }
