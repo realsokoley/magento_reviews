@@ -80,6 +80,7 @@ class GeneratePrivateTopicTasks extends Command
             $wordList = json_decode($wordListJson['list'], true);
             $i = 1;
             $words = '';
+            $dictionaryNew = [];
             foreach ($wordList as $dictionary) {
                 $words .= $i == count($wordList) ? $dictionary['word'] : $dictionary['word'] . ', ';
                 $dictionaryNew[] = [
