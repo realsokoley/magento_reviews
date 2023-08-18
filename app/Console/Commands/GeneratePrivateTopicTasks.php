@@ -37,12 +37,10 @@ class GeneratePrivateTopicTasks extends Command
 
     public function __construct(
         GenerateTopicLevelTasksFillBlanks $generateTopicLevelTasksFillBlanks,
-        GenerateTopicLevelFindAnswer $generateTopicLevelFindAnswer,
-        GenerateTopicLevelMatchTranslation $generateTopicLevelMatchTranslation
+        GenerateTopicLevelFindAnswer $generateTopicLevelFindAnswer
    ) {
         $this->generateTopicLevelTasksFillBlanks = $generateTopicLevelTasksFillBlanks;
         $this->generateTopicLevelFindAnswer = $generateTopicLevelFindAnswer;
-        $this->generateTopicLevelMatchTranslation = $generateTopicLevelMatchTranslation;
 
         parent::__construct();
    }
@@ -71,7 +69,7 @@ class GeneratePrivateTopicTasks extends Command
         $wordListArray = WordList::whereIn('id', $wordListIdArray)->get()->toArray();
 
         foreach ($wordListArray as $wordListJson) {
-            $wordListTaskMap = $this->getWordListTaskMap();
+            $wordListTaskMap = $this->generateTopicLevelTasksFillBlanks->getWordListTaskMap();
             if (
                 isset($wordListTaskMap[$wordListJson['id']]) &&
                 isset($wordListTaskMap[$wordListJson['id']][$task->id])
