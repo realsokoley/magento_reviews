@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Helper\ChatGPTRequest;
 use App\Models\Level;
-use App\Models\PrivateTopicLevel;
 use App\Models\Topic;
 use App\Models\TopicLevel;
 use App\Models\WordList;
@@ -172,7 +171,7 @@ class GenerateWordLists extends Command
             return $this->topicLevelMap;
         }
 
-        $topicLevelWordLists = PrivateTopicLevel::whereNotNull('word_list_id')->get()->toArray();
+        $topicLevelWordLists = TopicLevel::whereNotNull('word_list_id')->get()->toArray();
         foreach ($topicLevelWordLists as $topicLevelWordList) {
             $this->topicLevelMap[$topicLevelWordList['topic_id']][$topicLevelWordList['level_id']] =
                 $topicLevelWordList['word_list_id'];
