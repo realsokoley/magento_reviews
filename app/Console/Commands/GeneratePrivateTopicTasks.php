@@ -106,4 +106,11 @@ class GeneratePrivateTopicTasks extends Command
             $wordListTask->save();
         }
     }
+
+    public function getPendingTasksPrivateTopic(): PrivateTopic
+    {
+        return PrivateTopic::where(
+            ['state', 2]
+        )->first();
+    }
 }
