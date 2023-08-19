@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('users', function(Blueprint $table) {
             $table->integer('day_limit')->default(1);
-            $table->integer('month_limit')->default(0);
+            $table->integer('month_limit')->default(4);
         });
     }
 
