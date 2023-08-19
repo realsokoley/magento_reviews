@@ -32,8 +32,10 @@ class PopulateMaxRating extends Command
     {
         $wordLists = $this->getWordLists();
         foreach ($wordLists as $wordList) {
-            print_r($wordList['id']);
             $wordListTasks = $this->getWordListTasks($wordList['id']);
+            if (!$wordListTasks){
+                continue;
+            }
             $sum = 0;
             $countArray = [];
             foreach ($wordListTasks as $wordListTask) {
@@ -99,7 +101,6 @@ class PopulateMaxRating extends Command
 
     public function getMaxRatingForRequestedArray($countArray): array
     {
-        print_r($countArray);
         $n = $countArray[1];
         $m = $countArray[2];
         $k = $countArray[3];
