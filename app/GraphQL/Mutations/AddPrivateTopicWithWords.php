@@ -48,6 +48,7 @@ class AddPrivateTopicWithWords
         $privateTopic->topic = $args['topic'];
         $privateTopic->ai_words = 1;
         $privateTopic->state = 2;
+        $privateTopic->description = '';
         $privateTopic->save();
 
         $privateTopicLevel = new PrivateTopicLevel();
