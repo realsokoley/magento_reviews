@@ -81,7 +81,13 @@ class PopulateMaxRating extends Command
             return $this->wordLists;
         }
 
-        $this->wordLists = WordList::whereNotNull('list')->get()->toArray();
+        $this->wordLists = WordList::where(
+            [
+                ['list', 'neq', NULL],
+                ['max_rating', 0]
+            ]
+        )->get()->toArray();
+
         return $this->wordLists;
     }
 
@@ -92,6 +98,7 @@ class PopulateMaxRating extends Command
 
     public function getMaxRatingForRequestedArray($countArray): array
     {
+        print_r($countArray);
         $n = $countArray[1];
         $m = $countArray[2];
         $k = $countArray[3];
