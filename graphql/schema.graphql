@@ -155,7 +155,7 @@ type Query {
     @field(resolver: "PrivateTopicsRating@resolve")
     @guard(with: ["api"])
 
-    privateTopic(id: ID! @eq): PrivateTopic @find
+    privateTopic(id: ID! @eq): PrivateTopic
     @field(resolver: "PrivateTopic@resolve")
     @guard(with: ["api"])
 
