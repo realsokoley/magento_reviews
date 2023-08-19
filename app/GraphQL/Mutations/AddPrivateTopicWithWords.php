@@ -30,8 +30,11 @@ class AddPrivateTopicWithWords
         }
 
         $array = json_decode($args['words'], true);
-        if (!$this->validateArray($array)) {
+        if (!is_array($array)) {
+            throw ValidationException::withMessages(['error' => 'Json decoding error']);
+        }
 
+        if (!$this->validateArray($array)) {
             throw ValidationException::withMessages(['error' => 'Validation words not passed']);
         }
 
