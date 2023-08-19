@@ -62,6 +62,11 @@ type TopicRating {
     is_favorite: Boolean!
 }
 
+type PrivateTopicRating {
+    topic: PrivateTopic!
+    rating: Int!
+}
+
 type Level {
     id: ID!
     level: String!
@@ -144,6 +149,14 @@ type Query {
         meta_topic_id: Int @where(operator: "like")
     ): [TopicRating!]!
     @field(resolver: "TopicsRating@resolve")
+    @guard(with: ["api"])
+
+    privateTopicsRating: [PrivateTopicRating!]!
+    @field(resolver: "PrivateTopicsRating@resolve")
+    @guard(with: ["api"])
+
+    privateTopic(id: ID! @eq): PrivateTopic @find
+    @field(resolver: "PrivateTopic@resolve")
     @guard(with: ["api"])
 
     levels: [Level!]! @all
