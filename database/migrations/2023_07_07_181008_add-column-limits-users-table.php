@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function(Blueprint $table) {
-            $table->integer('day_limit');
-            $table->integer('month_limit');
+            $table->integer('day_limit')->default(1);
+            $table->integer('month_limit')->default(0);
         });
     }
 
