@@ -34,13 +34,16 @@ class GeneratePrivateTopicTasks extends Command
     protected $description = 'Command description';
     private GenerateTopicLevelTasksFillBlanks $generateTopicLevelTasksFillBlanks;
     private GenerateTopicLevelFindAnswer $generateTopicLevelFindAnswer;
+    private GenerateDialogs $generateDialogs;
 
     public function __construct(
         GenerateTopicLevelTasksFillBlanks $generateTopicLevelTasksFillBlanks,
-        GenerateTopicLevelFindAnswer $generateTopicLevelFindAnswer
+        GenerateTopicLevelFindAnswer $generateTopicLevelFindAnswer,
+        GenerateDialogs $generateDialogs
    ) {
         $this->generateTopicLevelTasksFillBlanks = $generateTopicLevelTasksFillBlanks;
         $this->generateTopicLevelFindAnswer = $generateTopicLevelFindAnswer;
+        $this->generateDialogs = $generateDialogs;
 
         parent::__construct();
    }
@@ -115,6 +118,8 @@ class GeneratePrivateTopicTasks extends Command
             $wordListTask->max_rating = 0;
             $wordListTask->count = count($wordList);
             $wordListTask->save();
+
+            $this->generateDialogs->generateDialog($words, $wordListJson['id']);
         }
     }
 
