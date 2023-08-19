@@ -26,6 +26,8 @@ return new class extends Migration
             $table->timestamps();
             $table->integer('paid')->default(0);
             $table->integer('active')->default(0);
+            $table->integer('day_limit')->default(1);
+            $table->integer('month_limit')->default(0);
             $table->timestamp('payment_date')->nullable();
         });
     }
