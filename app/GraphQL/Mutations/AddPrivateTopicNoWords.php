@@ -27,8 +27,6 @@ class AddPrivateTopicNoWords
             throw ValidationException::withMessages(['error' => 'Month limit reached']);
         }
 
-
-
         $privateTopic = new PrivateTopic();
         $privateTopic->user_id = $userId;
         $privateTopic->topic = $args['topic'];
@@ -36,6 +34,10 @@ class AddPrivateTopicNoWords
         $privateTopic->state = 0;
         $privateTopic->description = '';
         $privateTopic->save();
+
+        $user->day_limit = $user->day_limit-1;
+        $user->month_limit = $user->month_limit-1;
+        $user->save();
 
         return $privateTopic;
     }

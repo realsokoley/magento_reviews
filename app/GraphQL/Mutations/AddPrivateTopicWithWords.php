@@ -57,6 +57,10 @@ class AddPrivateTopicWithWords
         $privateTopicLevel->word_list_id = $wordList->id;
         $privateTopicLevel->save();
 
+        $user->day_limit = $user->day_limit-1;
+        $user->month_limit = $user->month_limit-1;
+        $user->save();
+
         return $privateTopic;
     }
 

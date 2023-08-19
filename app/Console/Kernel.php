@@ -17,7 +17,9 @@ class Kernel extends ConsoleKernel
         Commands\PopulateMaxRating::class,
         Commands\GeneratePrivateTopicWordLists::class,
         Commands\GeneratePrivateTopicTasks::class,
-        Commands\GeneratePrivateTopicDescriptions::class
+        Commands\GeneratePrivateTopicDescriptions::class,
+        Commands\UpdateMonthLimits::class,
+        Commands\UpdateDayLimits::class
     ];
 
     /**
