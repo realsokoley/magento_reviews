@@ -45,6 +45,11 @@ class GeneratePrivateTopicWordLists extends Command
      */
     public function handle(): void
     {
+        $processingTopics = PrivateTopic::where('state', 1)->get()->toArray();
+        if (count($processingTopics) > 0) {
+            return;
+        }
+
         $privateTopic = $this->getPendingPrivateTopic();
         $privateTopic->state = 1;
         $privateTopic->save();

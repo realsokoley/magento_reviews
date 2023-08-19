@@ -49,6 +49,11 @@ class GeneratePrivateTopicTasks extends Command
      */
     public function handle(): void
     {
+        $processingTopics = PrivateTopic::where('state', 3)->get()->toArray();
+        if (count($processingTopics) > 0) {
+            return;
+        }
+
         $privateTopic = $this->getPendingTasksPrivateTopic();
         if (!$privateTopic) {
             return;
