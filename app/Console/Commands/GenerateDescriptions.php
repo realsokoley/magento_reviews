@@ -2,16 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Helper\ChatGPTRequest;
-use App\Models\Dialog;
-use App\Models\Level;
 use App\Models\MetaTopic;
-use App\Models\Task;
 use App\Models\Topic;
-use App\Models\TopicLevel;
-use App\Models\WordList;
-use App\Models\WordListTask;
-use Illuminate\Console\Command;
 
 class GenerateDescriptions extends GenerateTopicLevelTasksFillBlanks
 {
