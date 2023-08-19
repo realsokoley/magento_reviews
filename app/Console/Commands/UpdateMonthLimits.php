@@ -26,13 +26,13 @@ class UpdateMonthLimits extends Command
      */
     public function handle(): void
     {
-        $users = User::where('paid', 0);
+        $users = User::where('paid', 0)->get();
         foreach ($users as $user) {
             $user->month_limit = 4;
             $user->save();
         }
 
-        $paidUsers = User::where('paid', 1);
+        $paidUsers = User::where('paid', 1)->get();
         foreach ($paidUsers as $user) {
             $user->month_limit = 200;
             $user->save();
