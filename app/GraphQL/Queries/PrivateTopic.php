@@ -12,7 +12,7 @@ class PrivateTopic
     {
         $user = $context->user();
         $topic = PrivateTopicModel::find($args['id']);
-        if ($topic->user_id != $user->id) {
+        if ($topic->user->id != $user->id) {
             throw ValidationException::withMessages(['error' => 'Not allowed for current user']);
         }
 
