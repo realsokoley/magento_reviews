@@ -26,7 +26,7 @@ class UpdateDayLimits extends Command
      */
     public function handle(): void
     {
-        $users = User::where('paid', 0);
+        $users = User::where('paid', '0');
         foreach ($users as $user) {
             print_r($user->id);
             $user->day_limit = 1;
