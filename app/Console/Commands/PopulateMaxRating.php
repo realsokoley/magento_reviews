@@ -83,7 +83,6 @@ class PopulateMaxRating extends Command
 
         $this->wordLists = WordList::where(
             [
-                ['list', 'neq', NULL],
                 ['max_rating', 'eq', 0]
             ]
         )->get()->toArray();
