@@ -79,6 +79,14 @@ type TopicLevel {
     wordList: WordList! @belongsTo(relation: "wordList")
 }
 
+type PrivateTopicLevel {
+    id: ID!
+    topic: Topic! @belongsTo(relation: "topic")
+    level: Level! @belongsTo(relation: "level")
+    wordList: WordList! @belongsTo(relation: "wordList")
+}
+
+
 type TopicLevelTask {
     id: ID!
     topicLevel: TopicLevel! @belongsTo(relation: "topicLevel")
