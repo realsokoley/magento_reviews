@@ -168,6 +168,12 @@ type Query {
         level_id: Int @where(operator: "like")
     ): [TopicLevel!]! @all
 
+    private_topic_level(
+        topic_id: Int @where(operator: "like")
+        level_id: Int @where(operator: "like")
+    ): [TopicLevel!]! @all
+    @guard(with: ["api"])
+
     topic_level_task(
         topic_level_id: Int @where(operator: "like")
         task_id: Int @where(operator: "like")
