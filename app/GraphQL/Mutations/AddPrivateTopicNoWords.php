@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\Console\Commands\PopulateMaxRating;
 use App\Models\PrivateTopic;
 use App\Models\User;
 use GraphQL\Type\Definition\ResolveInfo;
@@ -11,6 +12,14 @@ use Illuminate\Validation\ValidationException;
 
 class AddPrivateTopicNoWords
 {
+    private PopulateMaxRating $populateMaxRating;
+
+    public function __construct(
+        PopulateMaxRating $populateMaxRating
+    ) {
+        $this->populateMaxRating = $populateMaxRating;
+    }
+
     public function resolve($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
         $userId = $context->user()->id;
@@ -39,6 +48,7 @@ class AddPrivateTopicNoWords
         $user->month_limit = $user->month_limit-1;
         $user->save();
 
+        $this->populateMaxRating->handle();
         return $privateTopic;
     }
 }
