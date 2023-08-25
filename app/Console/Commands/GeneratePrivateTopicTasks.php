@@ -35,15 +35,18 @@ class GeneratePrivateTopicTasks extends Command
     private GenerateTopicLevelTasksFillBlanks $generateTopicLevelTasksFillBlanks;
     private GenerateTopicLevelFindAnswer $generateTopicLevelFindAnswer;
     private GenerateDialogs $generateDialogs;
+    private PopulateMaxRating $populateMaxRating;
 
     public function __construct(
         GenerateTopicLevelTasksFillBlanks $generateTopicLevelTasksFillBlanks,
         GenerateTopicLevelFindAnswer $generateTopicLevelFindAnswer,
-        GenerateDialogs $generateDialogs
+        GenerateDialogs $generateDialogs,
+        PopulateMaxRating $populateMaxRating
    ) {
         $this->generateTopicLevelTasksFillBlanks = $generateTopicLevelTasksFillBlanks;
         $this->generateTopicLevelFindAnswer = $generateTopicLevelFindAnswer;
         $this->generateDialogs = $generateDialogs;
+        $this->populateMaxRating = $populateMaxRating;
 
         parent::__construct();
    }
@@ -120,6 +123,8 @@ class GeneratePrivateTopicTasks extends Command
             $wordListTask->save();
 
             $this->generateDialogs->generateDialog($words, $wordListJson['id']);
+
+            $this->populateMaxRating->handle();
         }
     }
 
