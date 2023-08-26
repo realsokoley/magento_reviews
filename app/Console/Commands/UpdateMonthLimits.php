@@ -28,7 +28,7 @@ class UpdateMonthLimits extends Command
     {
         $users = User::where('paid', 0)->get();
         foreach ($users as $user) {
-            $user->month_limit = 4;
+            $user->month_limit = 10;
             $user->save();
         }
 

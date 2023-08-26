@@ -34,6 +34,8 @@ class AuthMutator
             $user->api_token = $token;
             $user->paid = 0;
             $user->active = 1;
+            $user->day_limit = 2;
+            $user->month_limit = 10;
             $user->save();
 
             $userData = [
