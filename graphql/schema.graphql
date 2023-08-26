@@ -1,6 +1,10 @@
 type User {
     id: ID!
     username: String!
+    paid: Int!
+    active: Int!
+    day_limit: Int!
+    month_limit: Int!
 }
 
 type WordList {
