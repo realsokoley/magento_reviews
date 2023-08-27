@@ -221,6 +221,10 @@ type Mutation {
         username: String!
         email: String! @rules(apply: ["email", "unique:users"])
         password: String! @hash @rules(apply: ["min:6"])
+        paid: Int = 0
+        active: Int = 1
+        day_limit: Int = 2
+        month_limit: Int = 10
     ): User @create
 
     removeUserData: String @field(resolver: "RemoveUserData@resolve")
