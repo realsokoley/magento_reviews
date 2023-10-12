@@ -15,8 +15,7 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git \
     curl\
-    npm\
-    cron
+    npm
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -57,6 +56,3 @@ RUN npm run build
 # Change permission for storage
 RUN chown -R www-data:www-data /var/www/html/storage
 RUN chmod -R 775 /var/www/html/storage
-
-# Start cron
-CMD ["cron", "-f"]
