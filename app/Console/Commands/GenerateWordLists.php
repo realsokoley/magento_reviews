@@ -75,7 +75,7 @@ class GenerateWordLists extends Command
         $levelsString = $this->getLevelsString($levels);
         print 'Generating response for topic "' . $topic['topic'] . '"';
 
-        $jsonResult = $this->chatGPTRequest->ask("Please split at least 24 Finnish words for topic \"" . $topic['topic'] . "\" to ". $levelsString ." and share me a result with translations as a json string. For the JSON template please use " . $this->getJsonTemplate());
+        $jsonResult = $this->chatGPTRequest->ask("Please split at least 24 ".env('LANGUAGE')." words for topic \"" . $topic['topic'] . "\" to ". $levelsString ." and share me a result with translations as a json string. For the JSON template please use " . $this->getJsonTemplate());
         //print $jsonResult;
         $array = json_decode($jsonResult, true);
         if (!$this->validateArray($array)) {

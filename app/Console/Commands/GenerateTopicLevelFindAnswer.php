@@ -34,7 +34,7 @@ class GenerateTopicLevelFindAnswer extends GenerateTopicLevelTasksFillBlanks
     }
 
     public function getPromt($task, $words) {
-        $promt = 'Please find not single root synonyms phrases that can describe following words:  "'.$words.'" in Finnish and in English. You should return JSON with following template '. $this->jsonTemplate . '. "task" value must be a sentence which contain more than 1 word. "task" value must not contain "answer" value as well as "translated_task" value must not contain "translated_answer" value.';
+        $promt = 'Please find not single root synonyms phrases that can describe following words:  "'.$words.'" in '.env('LANGUAGE').' and in English. You should return JSON with following template '. $this->jsonTemplate . '. "task" value must be a sentence which contain more than 1 word. "task" value must not contain "answer" value as well as "translated_task" value must not contain "translated_answer" value.';
         return $promt;
     }
 

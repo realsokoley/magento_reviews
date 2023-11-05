@@ -95,7 +95,7 @@ class GenerateDialogs extends GenerateTopicLevelTasksFillBlanks
 
     public function getDialogPromt($words)
     {
-        $promt = 'Please generate me at least 5 simple finnish dialogs with english translations containing the words "' . $words . '"' . $this->getSpecificTaskCondition() . '. You should return JSON with following template ' . $this->jsonTemplate;
+        $promt = 'Please generate me at least 5 simple '.env('LANGUAGE').' dialogs with english translations containing the words "' . $words . '"' . $this->getSpecificTaskCondition() . '. You should return JSON with following template ' . $this->jsonTemplate;
 
         return $promt;
     }
