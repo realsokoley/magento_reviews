@@ -63,4 +63,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Feedback', 'user_id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function pendingTasks()
+    {
+        return $this->hasMany('App\Models\PendingTask', 'user_id');
+    }
 }

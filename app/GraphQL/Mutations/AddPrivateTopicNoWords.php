@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\Models\PendingTask;
 use App\Models\PrivateTopic;
 use App\Models\User;
 use GraphQL\Type\Definition\ResolveInfo;
@@ -26,6 +27,16 @@ class AddPrivateTopicNoWords
         if ($monthLimit == 0) {
             throw ValidationException::withMessages(['error' => 'Month limit reached']);
         }
+
+        if (PendingTask::where('user_id', $userId)->exists()) {
+            throw ValidationException::withMessages(['error' => 'One pending task already exists for this user, wait untill it finishes']);
+        }
+
+        $pendingTask = new PendingTask();
+        $pendingTask->user_id = $userId;
+        $pendingTask->language = env('LANGUAGE');
+        $pendingTask->status = 0;
+        $pendingTask->save();
 
         $privateTopic = new PrivateTopic();
         $privateTopic->user_id = $userId;

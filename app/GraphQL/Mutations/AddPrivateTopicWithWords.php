@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\Models\PendingTask;
 use App\Models\PrivateTopic;
 use App\Models\PrivateTopicLevel;
 use App\Models\User;
@@ -37,6 +38,16 @@ class AddPrivateTopicWithWords
         if (!$this->validateArray($array)) {
             throw ValidationException::withMessages(['error' => 'Validation words not passed']);
         }
+
+        if (PendingTask::where('user_id', $userId)->exists()) {
+            throw ValidationException::withMessages(['error' => 'One pending task already exists for this user, wait untill it finishes']);
+        }
+
+        $pendingTask = new PendingTask();
+        $pendingTask->user_id = $userId;
+        $pendingTask->language = env('LANGUAGE');
+        $pendingTask->status = 0;
+        $pendingTask->save();
 
         $wordList = new WordList();
         $wordList->list = $args['words'];

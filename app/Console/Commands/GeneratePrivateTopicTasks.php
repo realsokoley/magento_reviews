@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Helper\ChatGPTRequest;
 use App\Models\Level;
+use App\Models\PendingTask;
 use App\Models\PrivateTopic;
 use App\Models\PrivateTopicLevel;
 use App\Models\Task;
@@ -55,6 +56,11 @@ class GeneratePrivateTopicTasks extends Command
      */
     public function handle(): void
     {
+        $pendingTasks = PendingTask::where('status', 1)->get()->toArray();
+        if (count($pendingTasks) > 0) {
+            return;
+        }
+
         $processingTopics = PrivateTopic::where('state', 3)->get()->toArray();
         if (count($processingTopics) > 0) {
             return;
@@ -64,6 +70,10 @@ class GeneratePrivateTopicTasks extends Command
         if (!$privateTopic) {
             return;
         }
+
+        $pendingTask = PendingTask::where('user_id', $privateTopic->user_id)->first();
+        $pendingTask->status = 1;
+        $pendingTask->save();
         $privateTopic->state = 3;
         $privateTopic->save();
         $this->generateTopicTasks($privateTopic);
@@ -71,6 +81,7 @@ class GeneratePrivateTopicTasks extends Command
         $privateTopic->state = 4;
         $privateTopic->save();
 
+        PendingTask::where('user_id', $privateTopic->user_id)->delete();
     }
 
     public function generateTopicTasks($topic)

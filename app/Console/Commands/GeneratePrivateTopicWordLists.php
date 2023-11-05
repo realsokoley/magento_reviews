@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Helper\ChatGPTRequest;
 use App\Models\Level;
+use App\Models\PendingTask;
 use App\Models\PrivateTopic;
 use App\Models\PrivateTopicLevel;
 use App\Models\WordList;
@@ -45,6 +46,11 @@ class GeneratePrivateTopicWordLists extends Command
      */
     public function handle(): void
     {
+        $pendingTasks = PendingTask::where('status', 1)->get()->toArray();
+        if (count($pendingTasks) > 0) {
+            return;
+        }
+
         $processingTopics = PrivateTopic::where('state', 1)->get()->toArray();
         if (count($processingTopics) > 0) {
             return;
@@ -53,7 +59,15 @@ class GeneratePrivateTopicWordLists extends Command
         $privateTopic = $this->getPendingPrivateTopic();
         $privateTopic->state = 1;
         $privateTopic->save();
+
+        $pendingTask = PendingTask::where('user_id', $privateTopic->user_id)->first();
+        $pendingTask->status = 1;
+        $pendingTask->save();
+
         $this->generateTopicWordList($privateTopic);
+
+        $pendingTask->status = 0;
+        $pendingTask->save();
     }
 
     public function generateTopicWordList($topic)
