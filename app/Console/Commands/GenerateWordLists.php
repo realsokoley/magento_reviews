@@ -103,7 +103,7 @@ class GenerateWordLists extends Command
 
     public function getJsonTemplate(): string
     {
-        return '{"basic": [{"word": "Hei","translation": "Hello"}], "medium": [{"word": "Hyvää iltaa","translation": "Good Evening"}], "advanced": [{"word": "Hyvää viikonloppua","translation": "Have a good weekend"}]}';
+        return \file_get_contents(\base_path('resources/data/json_templates/' . env('LANGUAGE') . '/word_list'));
     }
 
     public function validateArray($array): bool

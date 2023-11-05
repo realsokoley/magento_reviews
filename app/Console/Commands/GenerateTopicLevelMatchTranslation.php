@@ -2,14 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\Helper\ChatGPTRequest;
-use App\Models\Level;
 use App\Models\Task;
-use App\Models\Topic;
-use App\Models\TopicLevel;
 use App\Models\WordList;
 use App\Models\WordListTask;
-use Illuminate\Console\Command;
 
 class GenerateTopicLevelMatchTranslation extends GenerateTopicLevelTasksFillBlanks
 {
@@ -20,7 +15,6 @@ class GenerateTopicLevelMatchTranslation extends GenerateTopicLevelTasksFillBlan
      */
     protected $signature = 'app:generate-topic-level-tasks-match-translation';
     protected $taskName = 'match_translation';
-    protected string $jsonTemplate = '{"1": [{"task": "Autumn", "translated_task": "Autumn", "answer":"Syksy", "translated_answer":"Autumn"}]}';
 
     public function handle(): void
     {
@@ -52,6 +46,12 @@ class GenerateTopicLevelMatchTranslation extends GenerateTopicLevelTasksFillBlan
 
     }
 
+    public function getJsonTemplate(): string
+    {
+        return \file_get_contents(\base_path('resources/data/json_templates/' . env('LANGUAGE') . '/match_translation_task'));
+    }
+
+
     public function specificTaskValidation($dictionary) {
         return true;
     }
@@ -72,7 +72,7 @@ class GenerateTopicLevelMatchTranslation extends GenerateTopicLevelTasksFillBlan
 
     public function getPromt($task, $words)
     {
-        $promt = 'Please generate me an exercise "' . $task . '" for words "' . $words . '" . ' . $this->getSpecificTaskCondition() . '. You should return JSON with following template ' . $this->jsonTemplate;
+        $promt = 'Please generate me an exercise "' . $task . '" for words "' . $words . '" . ' . $this->getSpecificTaskCondition() . '. You should return JSON with following template ' . $this->getJsonTemplate();
 
         return $promt;
     }

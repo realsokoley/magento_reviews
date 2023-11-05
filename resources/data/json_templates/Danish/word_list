@@ -1,0 +1,20 @@
+{
+  "basic": [
+    {
+      "word": "Hej",
+      "translation": "Hello"
+    }
+  ],
+  "medium": [
+    {
+      "word": "Godaften",
+      "translation": "Good Evening"
+    }
+  ],
+  "advanced": [
+    {
+      "word": "God weekend",
+      "translation": "Have a good weekend"
+    }
+  ]
+}

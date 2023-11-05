@@ -2,15 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Helper\ChatGPTRequest;
-use App\Models\Level;
-use App\Models\Task;
-use App\Models\Topic;
-use App\Models\TopicLevel;
-use App\Models\WordList;
-use App\Models\WordListTask;
-use Illuminate\Console\Command;
-
 class GenerateTopicLevelFindAnswer extends GenerateTopicLevelTasksFillBlanks
 {
     /**
@@ -20,7 +11,6 @@ class GenerateTopicLevelFindAnswer extends GenerateTopicLevelTasksFillBlanks
      */
     protected $signature = 'app:generate-topic-level-tasks-find-answer';
     protected $taskName = 'find_answer';
-    protected string $jsonTemplate = '{"1": [{"task": "Tervehdys, jota käytetään aamulla.", "translated_task": "A greeting used in the morning.", "answer":"Hyvää huomenta", "translated_answer":"Good morning"}]}';
 
     public function specificTaskValidation($dictionary) {
         if ($dictionary['task'] == $dictionary['answer']) {
@@ -34,9 +24,15 @@ class GenerateTopicLevelFindAnswer extends GenerateTopicLevelTasksFillBlanks
     }
 
     public function getPromt($task, $words) {
-        $promt = 'Please find not single root synonyms phrases that can describe following words:  "'.$words.'" in '.env('LANGUAGE').' and in English. You should return JSON with following template '. $this->jsonTemplate . '. "task" value must be a sentence which contain more than 1 word. "task" value must not contain "answer" value as well as "translated_task" value must not contain "translated_answer" value.';
+        $promt = 'Please find not single root synonyms phrases that can describe following words:  "'.$words.'" in '.env('LANGUAGE').' and in English. You should return JSON with following template '. $this->getJsonTemplate() . '. "task" value must be a sentence which contain more than 1 word. "task" value must not contain "answer" value as well as "translated_task" value must not contain "translated_answer" value.';
         return $promt;
     }
+
+    public function getJsonTemplate(): string
+    {
+        return \file_get_contents(\base_path('resources/data/json_templates/' . env('LANGUAGE') . '/find_answer_task'));
+    }
+
 
     public function generateSpecificThemeArray($array)
     {

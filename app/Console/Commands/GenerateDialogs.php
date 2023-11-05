@@ -20,7 +20,6 @@ class GenerateDialogs extends GenerateTopicLevelTasksFillBlanks
      * @var string
      */
     protected $signature = 'app:generate-dialogs';
-    protected string $jsonTemplate = '{"1": [{"dialog": {"person1":"Moi!", "person2":"Moi! Hauska tavata"}, "translated_dialog": {"person1":"Hi!", "person2":"Hi! Nice to meet you"}}]}';
 
     protected array $dialogMap = [];
 
@@ -95,7 +94,7 @@ class GenerateDialogs extends GenerateTopicLevelTasksFillBlanks
 
     public function getDialogPromt($words)
     {
-        $promt = 'Please generate me at least 5 simple '.env('LANGUAGE').' dialogs with english translations containing the words "' . $words . '"' . $this->getSpecificTaskCondition() . '. You should return JSON with following template ' . $this->jsonTemplate;
+        $promt = 'Please generate me at least 5 simple '.env('LANGUAGE').' dialogs with english translations containing the words "' . $words . '"' . $this->getSpecificTaskCondition() . '. You should return JSON with following template ' . $this->getJsonTemplate();
 
         return $promt;
     }
@@ -113,6 +112,11 @@ class GenerateDialogs extends GenerateTopicLevelTasksFillBlanks
         }
 
         return $this->dialogMap;
+    }
+
+    public function getJsonTemplate(): string
+    {
+        return \file_get_contents(\base_path('resources/data/json_templates/' . env('LANGUAGE') . '/dialog'));
     }
 
     public function validateArray($array): bool

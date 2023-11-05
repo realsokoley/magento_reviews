@@ -1,0 +1,10 @@
+{
+  "1": [
+    {
+      "task": "Ta av dig _____, det är för varmt.",
+      "translated_task": "Take off that _____, it's too hot.",
+      "answer": "jackan",
+      "translated_answer": "jacket"
+    }
+  ]
+}

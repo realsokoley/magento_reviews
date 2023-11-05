@@ -1,0 +1,14 @@
+{
+  "1": [
+    {
+      "dialog": {
+        "person1": "Hej!",
+        "person2": "Hej! Trevligt att träffas"
+      },
+      "translated_dialog": {
+        "person1": "Hi!",
+        "person2": "Hi! Nice to meet you"
+      }
+    }
+  ]
+}
