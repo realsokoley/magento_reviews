@@ -13,22 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function(Blueprint $table) {
-            $table->integer('day_limit')->default(1);
-            $table->integer('month_limit')->default(4);
+        Schema::create('reviews', function (Blueprint $table) {
+            $table->id();
+            $table->string('product_sku');
+            $table->foreignId('user_id')->constrained();
+            $table->text('review');
+            $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
-        Schema::table('tasks', function(Blueprint $table) {
-
-        });
+        Schema::dropIfExists('reviews');
     }
-
 };

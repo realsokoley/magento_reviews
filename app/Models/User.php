@@ -16,59 +16,19 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string $remember_token
  * @property string $created_at
  * @property string $updated_at
- * @property integer $paid
- * @property integer $active
- * @property string $payment_date
- * @property string $last_game_time
- * @property integer $games_left
- * @property GameUser[] $gameUsers
- * @property PrivateRoom[] $privateRooms
- * @property Rating[] $ratings
  */
 class User extends Authenticatable
 {
     /**
      * @var array
      */
-    protected $fillable = ['username', 'name', 'email', 'email_verified_at', 'password', 'api_token', 'remember_token', 'created_at', 'updated_at', 'paid', 'active', 'payment_date', 'day_limit', 'month_limit'];
+    protected $fillable = ['username', 'name', 'email', 'email_verified_at', 'password', 'api_token', 'remember_token', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function wordListUsers()
+    public function reviews()
     {
-        return $this->hasMany('App\Models\WordListUser', 'user_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function userFavoriteTopics()
-    {
-        return $this->hasMany('App\Models\UserFavoriteTopic', 'user_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function userFavoriteMetaTopics()
-    {
-        return $this->hasMany('App\Models\UserFavoriteMetaTopic', 'user_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function feedbacks()
-    {
-        return $this->hasMany('App\Models\Feedback', 'user_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function pendingTasks()
-    {
-        return $this->hasMany('App\Models\PendingTask', 'user_id');
+        return $this->hasMany('App\Models\Review', 'user_id');
     }
 }
