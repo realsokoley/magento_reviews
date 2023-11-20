@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
@@ -12,24 +12,19 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\User::truncate();
-
-        $faker = \Faker\Factory::create();
         $password = bcrypt('secret');
 
-        \App\User::create([
-            'name'     => $faker->name,
+        // Create a specific user
+        User::factory()->create([
+            'name'     => 'Specific User',
             'email'    => 'graphql@test.com',
+            'username' => 'specificusername',
             'password' => $password,
         ]);
 
-        for ($i = 0; $i < 10; ++$i) {
-            \App\User::create([
-                'name'     => $faker->name,
-                'username'     => $faker->username,
-                'email'    => $faker->email,
-                'password' => $password,
-            ]);
-        }
+        // Create 10 additional users
+        User::factory(10)->create([
+            'password' => $password,
+        ]);
     }
 }

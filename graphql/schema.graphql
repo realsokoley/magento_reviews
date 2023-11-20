@@ -1,24 +1,24 @@
-type Query {
-    reviews: [Review]
-    review(id: ID!): Review
-    userReviews(userId: ID!): [Review]
-}
-
-type Mutation {
-    createReview(productSku: String!, userId: ID!, review: String!): Review
-}
-
 type User {
     id: ID!
     name: String!
     email: String!
     username: String!
-    reviews: [Review]
 }
 
 type Review {
     id: ID!
-    productSku: String!
+    product_sku: String!
     user: User!
     review: String!
+}
+
+type Query {
+    reviews: [Review] @all
+    review(id: ID!): Review @find
+    userReviews(userId: ID!): [Review] @hasMany
+    getReviewsBySku(productSku: String!): [Review] @field(resolver: "App\\GraphQL\\Queries\\GetReviewsBySku@resolve")
+}
+
+type Mutation {
+    createReview(product_sku: String!, userId: ID!, review: String!): Review @create
 }
