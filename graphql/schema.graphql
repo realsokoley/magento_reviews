@@ -10,6 +10,7 @@ type Review {
     product_sku: String!
     user: User!
     review: String!
+    rating: Int!
 }
 
 type Query {
