@@ -8,6 +8,7 @@ type User {
 type Review {
     id: ID!
     product_sku: String!
+    product_id: Int!
     user: User!
     review: String!
     rating: Int!
@@ -18,6 +19,7 @@ type Query {
     review(id: ID!): Review @find
     userReviews(userId: ID!): [Review] @hasMany
     getReviewsBySku(productSku: String!): [Review] @field(resolver: "App\\GraphQL\\Queries\\GetReviewsBySku@resolve")
+    getReviewsById(productId: Int!): [Review] @field(resolver: "App\\GraphQL\\Queries\\GetReviewsById@resolve")
 }
 
 type Mutation {
